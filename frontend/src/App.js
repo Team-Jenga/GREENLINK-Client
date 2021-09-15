@@ -1,15 +1,29 @@
 import React, { Component } from 'react';
-import Navbar from './components/Navbar/Navbar';
 import './App.css';
-import CarouselContainer from './components/carouselContainer';
+import {BrowserRouter, Route, Switch} from "react-router-dom";
+
+import Navbar from './components/Navbar/Navbar';
+import CarouselContainer from './components/Home';
+import About from './components/About';
+import Campaign from './components/Campaign';
+import Notice from './components/Notice';
+import Login from './components/Login';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <Navbar/>
-        <CarouselContainer/>
-      </div>
+      <BrowserRouter>
+        <div className="App">
+          <Navbar/>
+          <Switch>
+            <Route exact path="/" component={CarouselContainer} />
+            <Route exact path="/about" component={About} />
+            <Route exact path="/campaign" component={Campaign} />
+            <Route exact path="/notice" component={Notice} />
+            <Route exact path="/login" component={Login} />
+          </Switch>
+        </div>
+      </BrowserRouter>
     );
   }
 }

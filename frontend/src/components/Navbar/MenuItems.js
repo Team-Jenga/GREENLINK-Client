@@ -15,5 +15,11 @@ export const MenuItems = [
         title: '공지사항',
         url: '#공지사항',
         cName: 'nav-link'
+    },
+
+    {
+        title: '로그인',
+        url: '#로그인',
+        cName: 'nav-link-mobile'
     }
 ]

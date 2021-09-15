@@ -1,16 +1,141 @@
 .NavbarItems {
-    background: linear-gradient(90deg, rgb(233, 253, 234), rgb(176, 255, 180));
-    height: 80px;
+    background: linear-gradient(90deg, rgb(213, 252, 215), rgb(140, 255, 146));
+    height: 70px;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 1.2rem;
+    font-size: 1rem;
 }
 
 .NavbarLogo {
     justify-self: start;
+    margin-right: 10rem;
 }
 
-.NavbarItems .NavbarLogo img {
-    width: 20%;
+.logo {
+    width: 10rem;
+}
+
+.nav-menu {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    list-style: none;
+    text-align: center;
+    width: 50vw;
+    justify-content: end;
+    margin-right: 3rem;
+}
+
+.nav-link {
+    color: black;
+    margin-top: 1rem;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+}
+
+.nav-link-mobile {
+    display: none;
+}
+
+.nav-link:hover {
+    background-color: rgb(115, 255, 126);
+    border-radius: 4px;
+    transition: all 0.2s ease-out;
+}
+
+.fa-bars {
+    font-size: 1.5rem;
+}
+
+.fa-times {
+    font-size: 1.5rem;
+}
+
+.menu-icon {
+    display: none;
+}
+
+@media screen and (max-width: 960px) {
+    .NavbarItems {
+        position: relative;
+    }
+
+    .nav-menu {
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        width: 100%;
+        height: 400px;
+        position: absolute;
+        top: 70px;
+        left: 100%;
+        opacity: 1;
+        transition: all 0.5s ease;
+    }
+
+    .nav-menu.active {
+        background: rgb(140, 255, 146);
+        left: 0;
+        opacity: 1;
+        transition: all 0.5s ease;
+        z-index: 1;
+    }
+
+    .nav-link {
+        margin-top: auto;
+        text-align: center;
+        padding: 2rem;
+        width: 100%;
+        display: table;
+    }
+
+    .nav-link:hover {
+        background: rgb(213, 252, 215);
+        border-radius: 0;
+    }
+
+    .NavbarLogo {
+        position: absolute;
+        top: 0;
+        left: 0;
+        transform: translate(15%, 60%);
+    }
+
+    .menu-icon {
+        display: block;
+        position: absolute;
+        top: 0;
+        right: 0;
+        transform: translate(-100%, 40%);
+        font-size: 1.8rem;
+        cursor: pointer;
+    }
+
+    .fa-times {
+        font-size: 1.8rem;
+    }
+
+    .nav-link-mobile {
+        display: block;
+        text-align: center;
+        text-decoration: none;
+        padding: 2rem;
+        margin: 1rem auto;
+        border-radius: 4px;
+        width: 40%;
+        background: rgb(68, 253, 77);
+        color: black;
+        font-size: 1rem;
+    }
+
+    .nav-link-mobile:hover {
+        background: white;
+        text-decoration: none;
+        color: rgb(0, 255, 170);
+        transition: 250ms;
+    }
+
+    .btn {
+        display: none;
+    }
 }

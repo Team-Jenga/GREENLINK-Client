@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { MenuItems } from './MenuItems';
+import { Button } from '../Button';
 import '../../css/Navbar.css';
 
 class Navbar extends Component {
@@ -11,15 +12,12 @@ class Navbar extends Component {
 
     render() {
         return(
-            <nav className="NavbarItems">
-                <div className="NavbarLogo">
-                    <img src='images/logo2.png' alt='logo' title='logo'/>
+            <nav className='NavbarItems'>
+                <div className='NavbarLogo'>
+                    <img className ='logo' src='images/logo2.png' alt='logo' title='logo'/>
                 </div>
-                <div className="menu-icon" onClick={this.handleClick}>
-                    <i className={this.state.clicked ? 'fas fa-times' : 'fas fa-bars'}>
-                        
-                    </i>
-                    
+                <div className='menu-icon' onClick={this.handleClick}>
+                    <i className={this.state.clicked ? 'fas fa-times' : 'fas fa-bars'}></i>
                 </div>
                 <ul className={this.state.clicked ? 'nav-menu active' : 'nav-menu'}>
                     {MenuItems.map((item, index) => {
@@ -30,6 +28,7 @@ class Navbar extends Component {
                         )
                     })}
                 </ul>
+                <Button className='login'>로그인</Button>
             </nav>
         )
     }

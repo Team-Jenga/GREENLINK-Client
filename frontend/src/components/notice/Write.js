@@ -42,10 +42,9 @@ class Write extends Component {
                     <textarea type="text" name="content" onChange={this.handleChange} value={this.state.content}/>
                 </p>
                 <Button>
-                    <button onClick= {this.postBoard}>전송하기</button>
+                    <Link to="/notice" onClick={() => {this.postBoard()} }>전송하기</Link>
                     <Link to="/notice">목록</Link>
                 </Button>
-                <div>{JSON.stringify(this.state)}</div>
             </Wrap>
         );
     }

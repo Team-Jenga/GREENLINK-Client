@@ -27,6 +27,15 @@ class Read extends Component {
         const { loadingData } = this; 
         loadingData(); 
     }
+    
+    deleteRow(id, e){  
+        axios.delete(`http://localhost:4000/posts/${id}`)  
+          .then(res => {  
+            console.log(res);  
+            console.log(res.data);  
+          })  
+        
+      }  
 
     render() {
         const {board} = this.state;
@@ -36,12 +45,8 @@ class Read extends Component {
                 <p>{board.content}</p>
                 <Button>
                     <Link to="/notice">목록</Link>
-                    <a href="#" onClick={() => { alert('삭제');}}>
-                        삭제
-                    </a>
-                    <a href="#" onClick={()=> {alert('수정');}}>
-                        수정
-                    </a>
+                    <Link to="/notice" onClick={(e) => {this.deleteRow(board.id, e); alert("삭제되었습니다.");} }>삭제</Link>
+                    <Link to="/notice" onClick={(e) => {this.deleteRow(board.id, e); alert("수정되었습니다.")} }>수정</Link>
                 </Button>
             </Wrap>
         );

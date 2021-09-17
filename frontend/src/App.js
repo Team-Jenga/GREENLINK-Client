@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
+
 import {BrowserRouter, Route, Switch} from "react-router-dom";
 
-import Navbar from './components/Navbar/Navbar';
 import CarouselContainer from './components/Home';
 import About from './components/About';
 import Campaign from './components/Campaign';
@@ -14,7 +14,6 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div className="App">
-          <Navbar/>
           <Switch>
             <Route exact path="/" component={CarouselContainer} />
             <Route exact path="/about" component={About} />

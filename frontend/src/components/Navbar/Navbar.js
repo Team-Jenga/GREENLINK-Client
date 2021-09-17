@@ -30,6 +30,7 @@ class Navbar extends Component {
                     })}
                 </ul>
                 <Link to="/login"><Button className='login'>로그인</Button></Link>
+                <Link to="/register"><Button className='register'>회원가입</Button></Link>
             </nav>
         )
     }

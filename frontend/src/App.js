@@ -8,6 +8,7 @@ import About from './components/About';
 import Campaign from './components/Campaign';
 import Notice from './components/Notice';
 import Login from './components/Login';
+import Register from './components/Register';
 
 class App extends Component {
   render() {
@@ -20,6 +21,7 @@ class App extends Component {
             <Route exact path="/campaign" component={Campaign} />
             <Route exact path="/notice" component={Notice} />
             <Route exact path="/login" component={Login} />
+            <Route exact path="/register" component={Register} />
           </Switch>
         </div>
       </BrowserRouter>

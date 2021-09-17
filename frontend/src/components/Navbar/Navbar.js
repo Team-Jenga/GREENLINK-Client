@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { MenuItems } from './MenuItems';
-import { Button } from './Button';
+import { Button } from './MenuButton';
 import '../../css/Navbar.css';
 import { Link } from 'react-router-dom';
 
@@ -15,7 +15,7 @@ class Navbar extends Component {
         return(
             <nav className='NavbarItems'>
                 <div className='NavbarLogo'>
-                    <Link to="/"> <img className ='logo' src='images/logo2.png' alt='logo' title='logo'></img> </Link>
+                    <Link to="/"> <img className ='logo' src='images/logo.png' alt='logo' title='logo'></img> </Link>
                 </div>
                 <div className='menu-icon' onClick={this.handleClick}>
                     <i className={this.state.clicked ? 'fas fa-times' : 'fas fa-bars'}></i>

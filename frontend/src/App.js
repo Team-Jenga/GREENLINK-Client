@@ -8,6 +8,7 @@ import About from './components/About';
 import Campaign from './components/Campaign';
 import Notice from './components/Notice';
 import Login from './components/Login';
+import PostList from './components/postList';
 
 class App extends Component {
   render() {
@@ -17,7 +18,7 @@ class App extends Component {
           <Navbar/>
           <Switch>
             <Route exact path="/" component={CarouselContainer} />
-            <Route exact path="/about" component={About} />
+            <Route exact path="/about" component={About, PostList} />
             <Route exact path="/campaign" component={Campaign} />
             <Route exact path="/notice" component={Notice} />
             <Route exact path="/login" component={Login} />

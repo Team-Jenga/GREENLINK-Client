@@ -12,7 +12,7 @@ class List extends Component {
 
     loadingData = async () => { 
         try { 
-            const response = await axios.get('http://localhost:3000/posts'); 
+            const response = await axios.get('http://localhost:4000/posts'); 
             this.setState({ boards: response.data, });
         } catch (e) 
         { console.log(e); }
@@ -27,11 +27,11 @@ class List extends Component {
         const { boards } = this.state; 
         return (
         <Wrap> 
-            <h2>List</h2> 
+            <h2>공지사항</h2>
         {boards.map((item)=> {
             return (
                 <ListItem key = {item.id}>
-                    <Link to={`/read/${item.id}`}>
+                    <Link to={`/notice/read/${item.id}`}>
                         <h3>{item.title}</h3>
                         <p>{item.content}</p>
                     </Link>

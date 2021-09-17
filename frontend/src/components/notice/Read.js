@@ -5,15 +5,16 @@ import styled from 'styled-components';
 
 
 class Read extends Component {
-    stete ={
+    state ={
         id:'',
         board:[],
     };
 
-    lodingData = async() => {
+    loadingData = async() => {
         try {
             const {id} = this.props.match.params;
-            const response = await axios.get(`http://localhost:3000/posts/${id}`);
+            console.log(id)
+            const response = await axios.get(`http://localhost:4000/posts/${id}`);
             this.setState({
                 board:response.data,
             });
@@ -22,6 +23,10 @@ class Read extends Component {
             console.log(e);
         }
     };
+    componentDidMount() { 
+        const { loadingData } = this; 
+        loadingData(); 
+    }
 
     render() {
         const {board} = this.state;
@@ -30,7 +35,7 @@ class Read extends Component {
                 <h2>{board.title}</h2>
                 <p>{board.content}</p>
                 <Button>
-                    <Link to="/notice/list">목록</Link>
+                    <Link to="/notice">목록</Link>
                     <a href="#" onClick={() => { alert('삭제');}}>
                         삭제
                     </a>

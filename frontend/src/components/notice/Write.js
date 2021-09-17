@@ -11,11 +11,11 @@ class Write extends Component {
 
     postBoard = async() => {
         const {title, content} = this.state;
-        const post = await axios.post('http://localhost:3000/posts', {
+        const post = await axios.post('http://localhost:4000/posts', {
             title,
             content,
         });
-    alert('전송');
+    alert('글쓰기 완료');
 
     this.setState({
         title:'',

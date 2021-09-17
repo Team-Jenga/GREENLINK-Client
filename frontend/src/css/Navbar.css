@@ -16,7 +16,7 @@
     width: 10rem;
 }
 
-.nav-menu {
+.my-nav-menu {
     display: grid;
     grid-template-columns: repeat(3, auto);
     list-style: none;
@@ -24,22 +24,24 @@
     width: 50vw;
     justify-content: end;
     margin-right: 3rem;
+    margin-bottom: 0;
 }
 
-.nav-link {
+.my-nav-link {
     color: black;
     margin-top: 1rem;
     text-decoration: none;
     padding: 0.5rem 1rem;
 }
 
-.nav-link-mobile {
+.my-nav-link-mobile {
     display: none;
 }
 
-.nav-link:hover {
+.my-nav-link:hover {
     background-color: rgb(115, 255, 126);
     border-radius: 4px;
+    color: black;
     transition: all 0.2s ease-out;
 }
 
@@ -60,7 +62,7 @@
         position: relative;
     }
 
-    .nav-menu {
+    .my-nav-menu {
         display: flex;
         flex-direction: column;
         justify-content: start;
@@ -73,7 +75,7 @@
         transition: all 0.5s ease;
     }
 
-    .nav-menu.active {
+    .my-nav-menu.active {
         background: rgb(140, 255, 146);
         left: 0;
         opacity: 1;
@@ -81,7 +83,7 @@
         z-index: 1;
     }
 
-    .nav-link {
+    .my-nav-link {
         margin-top: auto;
         text-align: center;
         padding: 2rem;
@@ -89,7 +91,7 @@
         display: table;
     }
 
-    .nav-link:hover {
+    .my-nav-link:hover {
         background: rgb(213, 252, 215);
         border-radius: 0;
     }
@@ -98,7 +100,7 @@
         position: absolute;
         top: 0;
         left: 0;
-        transform: translate(15%, 60%);
+        transform: translate(5%, 75%);
     }
 
     .menu-icon {
@@ -106,36 +108,36 @@
         position: absolute;
         top: 0;
         right: 0;
-        transform: translate(-100%, 40%);
+        transform: translate(-100%, 30%);
         font-size: 1.8rem;
         cursor: pointer;
     }
 
     .fa-times {
-        font-size: 1.8rem;
+        font-size: 1.9rem;
     }
 
-    .nav-link-mobile {
+    .my-nav-link-mobile {
         display: block;
         text-align: center;
         text-decoration: none;
-        padding: 2rem;
-        margin: 1rem auto;
+        padding: 1.5rem;
+        margin: 2rem auto;
         border-radius: 4px;
-        width: 40%;
+        width: 25%;
         background: rgb(68, 253, 77);
         color: black;
         font-size: 1rem;
     }
 
-    .nav-link-mobile:hover {
+    .my-nav-link-mobile:hover {
         background: white;
         text-decoration: none;
         color: rgb(0, 255, 170);
         transition: 250ms;
     }
 
-    .btn {
+    .menu-btn {
         display: none;
     }
 }

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import '../../css/Navbar.css';
+
 import { MenuItems } from './MenuItems';
 import { Button } from './MenuButton';
-import '../../css/Navbar.css';
 import { Link } from 'react-router-dom';
 
 class Navbar extends Component {
@@ -30,7 +31,6 @@ class Navbar extends Component {
                     })}
                 </ul>
                 <Link to="/login"><Button className='login'>로그인</Button></Link>
-                <Link to="/register"><Button className='register'>회원가입</Button></Link>
             </nav>
         )
     }

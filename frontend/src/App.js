@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './App.css';
 
 import {BrowserRouter, Route, Switch} from "react-router-dom";
-
 import CarouselContainer from './components/Home';
 import About from './components/About';
 import Campaign from './components/Campaign';

@@ -2,10 +2,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 100px;
+    margin-top: 50px;
 }
 
 .register-form {
+    width: 400px;
     display: flex;
     flex-direction: column;
     align-items: center;

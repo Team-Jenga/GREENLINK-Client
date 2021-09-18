@@ -10,7 +10,7 @@ class Login extends Component {
         this.state = {
             member_id: "",
             member_pw: ""
-        };
+        };  
     };
 
     idChange = (e) => {this.setState({member_id: e.target.value})};
@@ -37,30 +37,26 @@ class Login extends Component {
         return(
             <div>
                 <Navbar/>
-                <div className="login-form">
-                    <h3>Log in</h3>
+                <div className="login-content">
+                    <div className="login-form">
 
-                    <div className="form-group">
-                        <label>Id</label>
-                        <input type="text" className="form-control" placeholder="Enter email" onChange={this.idChange}/>
-                    </div>
-
-                    <div className="form-group">
-                        <label>Password</label>
-                        <input type="text" className="form-control" placeholder="Enter password" onChange={this.pwChange}/>
-                    </div>
-
-                    <div className="form-group">
-                        <div className="custom-control custom-checkbox">
-                            <input type="checkbox" className="custom-control-input" id="customCheck1" />
-                            <label className="custom-control-label" htmlFor="customCheck1">Remember me</label>
+                        <div className="form-group">
+                            <label>Id</label>
+                            <input type="text" className="form-control" placeholder="아이디" onChange={this.idChange}/>
                         </div>
-                    </div>
 
-                    <button type="submit" className="btn btn-dark btn-lg btn-block" onClick={this.onClickLogin}>Sign in</button>
-                    <p className="forgot-password text-right">
-                        Forgot <a href="#">password?</a>
-                    </p>
+                        <div className="form-group">
+                            <label>Password</label>
+                            <input type="text" className="form-control" placeholder="비밀번호" onChange={this.pwChange}/>
+                        </div>
+
+                        <button type="submit" className="btn btn-dark btn-lg btn-block" onClick={this.onClickLogin}>로그인</button>
+                        <div className="bot">
+                                <a className="bot-left" href="#register">회원가입</a>
+                                <a className="bot-right" href="#forgot">아이디/비밀번호 찾기</a>
+                        </div>
+
+                    </div>
                 </div>
             </div>
         );

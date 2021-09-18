@@ -1,0 +1,19 @@
+.register-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 100px;
+}
+
+.register-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+.form-group {
+    width: 100%;
+    margin-top: 10px;
+}

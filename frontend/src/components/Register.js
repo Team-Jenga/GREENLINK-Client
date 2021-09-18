@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Navbar from './Navbar/Navbar';
+import '../css/Register.css';
 
 import axios from "axios";
 
@@ -67,59 +68,60 @@ class Register extends Component {
         return(
             <div>
                 <Navbar/>
-                
-                <div className="register-form">
-                    <h3>Register</h3>
+                <div className="register-content">
+                    <div className="register-form">
+                        <h3>Register</h3>
 
-                    <div className="form-group">
-                        <label>아이디</label>
-                        <input type="text" className="form-control" placeholder="First name" onChange={this.idChange} />
+                        <div className="form-group">
+                            <label>아이디</label>
+                            <input type="text" className="form-control" placeholder="First name" onChange={this.idChange} />
+                        </div>
+
+                        <div className="form-group">
+                            <label>비밀번호</label>
+                            <input type="text" className="form-control" placeholder="Last name" onChange={this.pwChange}/>
+                        </div>
+
+                        <div className="form-group">
+                            <label>이름</label>
+                            <input type="text" className="form-control" placeholder="Enter email" onChange={this.nameChange}/>
+                        </div>
+
+                        <div className="form-group">
+                            <label>닉네임</label>
+                            <input type="text" className="form-control" placeholder="Enter password" onChange={this.nickChange}/>
+                        </div>
+
+                        <div className="form-group">
+                            <label>생년월일</label>
+                            <input type="date" className="form-control" placeholder="Enter password" onChange={this.birthChange}/>
+                        </div>
+
+                        <div className="form-group">
+                            <label>전화번호</label>
+                            <input type="text" className="form-control" placeholder="Enter password" onChange={this.phoneChange}/>
+                        </div>
+
+                        <div className="form-group">
+                            <label>이메일</label>
+                            <input type="email" className="form-control" placeholder="Enter password" onChange={this.emailChange}/>
+                        </div>
+
+                        <div className="form-group">
+                            <label>거주 위치</label>
+                            <input type="text" className="form-control" placeholder="Enter password" onChange={this.locChange}/>
+                        </div>
+
+                        <div className="form-group">
+                            <label>가구 수</label>
+                            <input type="int" className="form-control" placeholder="Enter password" onChange={this.famChange}/>
+                        </div>
+
+                        <button type="submit" className="btn btn-dark btn-lg btn-block" onClick={this.onClickSubmit}>Register</button>
+                        <p className="forgot-password text-right">
+                            Already registered <a href="#">log in?</a>
+                        </p>
                     </div>
-
-                    <div className="form-group">
-                        <label>비밀번호</label>
-                        <input type="text" className="form-control" placeholder="Last name" onChange={this.pwChange}/>
-                    </div>
-
-                    <div className="form-group">
-                        <label>이름</label>
-                        <input type="text" className="form-control" placeholder="Enter email" onChange={this.nameChange}/>
-                    </div>
-
-                    <div className="form-group">
-                        <label>닉네임</label>
-                        <input type="text" className="form-control" placeholder="Enter password" onChange={this.nickChange}/>
-                    </div>
-
-                    <div className="form-group">
-                        <label>생년월일</label>
-                        <input type="date" className="form-control" placeholder="Enter password" onChange={this.birthChange}/>
-                    </div>
-
-                    <div className="form-group">
-                        <label>전화번호</label>
-                        <input type="text" className="form-control" placeholder="Enter password" onChange={this.phoneChange}/>
-                    </div>
-
-                    <div className="form-group">
-                        <label>이메일</label>
-                        <input type="email" className="form-control" placeholder="Enter password" onChange={this.emailChange}/>
-                    </div>
-
-                    <div className="form-group">
-                        <label>거주 위치</label>
-                        <input type="text" className="form-control" placeholder="Enter password" onChange={this.locChange}/>
-                    </div>
-
-                    <div className="form-group">
-                        <label>가구 수</label>
-                        <input type="int" className="form-control" placeholder="Enter password" onChange={this.famChange}/>
-                    </div>
-
-                    <button type="submit" className="btn btn-dark btn-lg btn-block" onClick={this.onClickSubmit}>Register</button>
-                    <p className="forgot-password text-right">
-                        Already registered <a href="#">log in?</a>
-                    </p>
                 </div>
             </div>
         );

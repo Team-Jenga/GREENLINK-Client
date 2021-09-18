@@ -58,8 +58,7 @@ class Register extends Component {
                 <Navbar/>
                 <div className="register-content">
                     <div className="register-form">
-                        <h3>Register</h3>
-
+                        
                         <div className="form-group">
                             <label>아이디</label>
                             <input type="text" className="form-control" placeholder="아이디" onChange={this.idChange} />
@@ -67,7 +66,7 @@ class Register extends Component {
 
                         <div className="form-group">
                             <label>비밀번호</label>
-                            <input type="text" className="form-control" placeholder="비밀번호" onChange={this.pwChange}/>
+                            <input type="password" className="form-control" placeholder="비밀번호" onChange={this.pwChange}/>
                         </div>
 
                         <div className="form-group">

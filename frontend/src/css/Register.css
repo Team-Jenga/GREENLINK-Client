@@ -3,6 +3,7 @@
     justify-content: center;
     align-items: center;
     margin-top: 50px;
+    margin-bottom: 100px;
 }
 
 .register-form {
@@ -14,7 +15,11 @@
     padding-right: 40px;
 }
 
-.form-group {
+.register-form .form-group {
     width: 100%;
-    margin-top: 10px;
+    margin-top: 15px;
+}
+
+.register-form .btn {
+    margin-top: 20px;
 }

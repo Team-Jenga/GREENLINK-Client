@@ -5,16 +5,19 @@ import styled from 'styled-components';
 
 
 class Read extends Component {
-    state ={
-        id:'',
-        board:[],
+    constructor() {
+        super();
+        this.state ={
+            id:'',
+            board:[],
+        };
     };
-
+    
     loadingData = async() => {
         try {
             const {id} = this.props.match.params;
             console.log(id)
-            const response = await axios.get(`http://localhost:4000/posts/${id}`);
+            const response = await axios.get(`http://ec2-52-78-154-227.ap-northeast-2.compute.amazonaws.com/api/notice/${id}`);
             this.setState({
                 board:response.data,
             });
@@ -23,13 +26,14 @@ class Read extends Component {
             console.log(e);
         }
     };
+
     componentDidMount() { 
         const { loadingData } = this; 
         loadingData(); 
     }
     
     deleteRow(id, e){  
-        axios.delete(`http://localhost:4000/posts/${id}`)  
+        axios.delete(`http://ec2-52-78-154-227.ap-northeast-2.compute.amazonaws.com/api/notice/${id}`)  
           .then(res => {  
             console.log(res);  
             console.log(res.data);  
@@ -41,8 +45,10 @@ class Read extends Component {
         const {board} = this.state;
         return (
             <Wrap>
-                <h2>{board.title}</h2>
-                <p>{board.content}</p>
+                <h2>{board.notice_title}</h2>
+                <h4>{board.member}</h4>
+                <h4>{board.created_at}</h4>
+                <p>{board.notice_content}</p>
                 <Button>
                     <Link to="/notice">목록</Link>
                     <Link to="/notice" onClick={(e) => {this.deleteRow(board.id, e); alert("삭제되었습니다.");} }>삭제</Link>

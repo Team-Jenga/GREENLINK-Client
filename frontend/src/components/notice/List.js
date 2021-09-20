@@ -5,15 +5,13 @@ import styled from 'styled-components';
 
 class List extends Component { 
     state = { boards: [], }; 
-    handleChange = (e) => { 
-        const { name, value } = e.target; 
-        this.setState({ [name]: value, }); 
-    };
 
     loadingData = async () => { 
         try { 
-            const response = await axios.get('http://localhost:4000/posts'); 
+            const response = await axios.get("http://ec2-52-78-154-227.ap-northeast-2.compute.amazonaws.com/api/notice"); 
+            console.log(`STATUS : ${response.status}`)
             this.setState({ boards: response.data, });
+            console.log(this.state)
         } catch (e) 
         { console.log(e); }
     };d
@@ -32,8 +30,8 @@ class List extends Component {
             return (
                 <ListItem key = {item.id}>
                     <Link to={`/notice/read/${item.id}`}>
-                        <h3>{item.title}</h3>
-                        <p>{item.content}</p>
+                        <h3>{item.notice_title}</h3>
+                        <p>{item.notice_content}</p>
                     </Link>
                 </ListItem>
             )

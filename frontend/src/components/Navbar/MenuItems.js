@@ -51,7 +51,7 @@ export const MenuItems2 = [
 
     {
         title: '로그아웃',
-        url: '#',
+        url: '/',
         cName: 'my-nav-link-mobile'
     }
 ]

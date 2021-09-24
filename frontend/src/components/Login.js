@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '../css/Login.css';
 
-import axios from "axios";
+import { postSignIn } from '../api/apiClient';
 import { Link } from 'react-router-dom';
 import Navbar from './Navbar/Navbar';
 
@@ -17,41 +17,29 @@ class Login extends Component {
     idChange = (e) => {this.setState({member_id: e.target.value})};
     pwChange = (e) => {this.setState({member_pw: e.target.value})};
 
-    // onClickLogin = () => {
-    //     if (this.state.member_id != "" &&
-    //         this.state.member_pw != "") {
-    //             axios.post("http://ec2-52-78-154-227.ap-northeast-2.compute.amazonaws.com/api/signin", {
-    //                 member_id: this.state.member_id,
-    //                 member_pw: this.state.member_pw
-    //             }).then(function (res) {
-    //                 console.log(res);
-    //             }).catch(function (error) {
-    //                 console.log(error);
-    //             }).then(alert('로그인 성공'));
-    //         } else {
-    //             alert("실패!");
-    //         };
-    // };
-
     onClickLogin = () => {
         if (this.state.member_id != "" &&
             this.state.member_pw != "") {
-                let data = this.state.member_id;
-                axios.post("http://ec2-52-78-154-227.ap-northeast-2.compute.amazonaws.com/api/signin", {
+                let member_id = this.state.member_id;
+                postSignIn({
                     member_id: this.state.member_id,
                     member_pw: this.state.member_pw
-                }).then(function (res) {
+                }).then(function(res) {
                     console.log(res);
                     
                     // 로그인 성공
                     if (res.status === 200) {
-                        localStorage.setItem("id", data);
+                        console.log(res);
+                        localStorage.setItem("id", member_id);
                         document.location.href = "/";
-                    } else if (res.status === 400) {
-                        alert("아이디가 존재하지 않거나 비밀번호가 일치하지 않습니다");
                     }
-                }).catch(function (error) {
-                    console.log(error);
+                }).catch(function(err) {
+                    console.log(err.response);
+                    if (err.response.data.message === "Wrong Password") {
+                        alert("비밀번호가 틀렸습니다");
+                    } else if (err.response.data.message === "Unexist ID") {
+                        alert("존재하지 않는 아이디입니다");
+                    };
                 });
             } else if (this.state.member_id === "") {
                 alert("아이디를 입력해주세요");

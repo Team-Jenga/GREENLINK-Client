@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import '../css/Register.css';
 
+import { postCheckId, postCheckNickname, postSignUp } from '../api/apiClient';
 import Navbar from './Navbar/Navbar';
-import axios from "axios";
 
 class Register extends Component {
     constructor() {
@@ -14,6 +14,7 @@ class Register extends Component {
             member_user_birth: "",
             member_user_phone: "",
             member_user_email: "",
+            member_nickname: "",
             member_auth: "user"         // 사용자 권한
         };
     };
@@ -24,6 +25,7 @@ class Register extends Component {
     birthChange = (e) => {this.setState({member_user_birth: e.target.value})};
     phoneChange = (e) => {this.setState({member_user_phone: e.target.value})};
     emailChange = (e) => {this.setState({member_user_email: e.target.value})};
+    nicknameChange = (e) => {this.setState({member_nickname: e.target.value})};
 
     onClickSubmit = () => {
         if (this.state.member_id != "" &&
@@ -31,23 +33,65 @@ class Register extends Component {
             this.state.member_name != "" &&
             this.state.member_user_birth != "" &&
             this.state.member_user_phone != "" &&
-            this.state.member_user_email != "") {
-                axios.post("http://ec2-52-78-154-227.ap-northeast-2.compute.amazonaws.com/api/signup", {
+            this.state.member_user_email != "" &&
+            this.state.member_nickname != "") {
+                postSignUp({
                     member_id: this.state.member_id,
                     member_pw: this.state.member_pw,
                     member_name: this.state.member_name,
                     member_user_birth: this.state.member_user_birth,
                     member_user_phone: this.state.member_user_phone,
                     member_user_email: this.state.member_user_email,
+                    member_nickname: this.state.member_nickname,
                     member_auth: this.state.member_auth
-                }).then(function (response) {
-                    console.log(response);
-                }).catch(function (error) {
-                    console.log(error);
-                }).then(alert('회원가입이 완료되었습니다'));
+                }).then(function (res) {
+                    console.log(res)
+                    alert("회원가입이 완료되었습니다");
+                    document.location.href = "/login";
+                }).catch(function(err) {
+                    console.log(err.response);
+                });
             } else {
                 alert("정보를 모두 입력해주세요");
             };
+    };
+
+    onClickIdAvailable = () => {
+        if (this.state.member_id != "") {
+            postCheckId({
+                member_id: this.state.member_id
+            }).then(function(res) {
+                console.log(res)
+                if (res.data.message === "true") {
+                    alert("사용 가능한 아이디입니다");
+                } else {
+                    alert("이미 존재하는 아이디입니다");
+                };
+            }).catch(function(err) {
+                console.log(err.response);
+            })
+        } else {
+            alert("아이디를 입력하세요");
+        }
+    };
+
+    onClickNicknameAvailable = () => {
+        if (this.state.member_id != "") {
+            postCheckNickname({
+                member_nickname: this.state.member_nickname
+            }).then(function(res) {
+                console.log(res)
+                if (res.data.message === "true") {
+                    alert("사용 가능한 닉네임입니다");
+                } else {
+                    alert("이미 존재하는 닉네임입니다");
+                };
+            }).catch(function(err) {
+                console.log(err.response);
+            })
+        } else {
+            alert("닉네임을 입력하세요");
+        }
     };
 
     render() {
@@ -60,8 +104,20 @@ class Register extends Component {
                     <div className="register-form">
                         
                         <div className="form-group">
+                            <label>이름</label>
+                            <input type="text" className="form-control" placeholder="이름" onChange={this.nameChange}/>
+                        </div>
+
+                        <div className="form-group">
+                            <label>생년월일</label>
+                            <input type="date" className="form-control" onChange={this.birthChange}/>
+                        </div>
+
+                        <div className="form-group">
                             <label>아이디</label>
                             <input type="text" className="form-control" placeholder="아이디" onChange={this.idChange} />
+                            <button type="submit" className="btn btn-dark btn-sm btn-block" 
+                            onClick={this.onClickIdAvailable}>중복검사</button>
                         </div>
 
                         <div className="form-group">
@@ -70,13 +126,10 @@ class Register extends Component {
                         </div>
 
                         <div className="form-group">
-                            <label>이름</label>
-                            <input type="text" className="form-control" placeholder="이름" onChange={this.nameChange}/>
-                        </div>
-
-                        <div className="form-group">
-                            <label>생년월일</label>
-                            <input type="date" className="form-control" onChange={this.birthChange}/>
+                            <label>닉네임</label>
+                            <input type="text" className="form-control" placeholder="닉네임" onChange={this.nicknameChange}/>
+                            <button type="submit" className="btn btn-dark btn-sm btn-block" 
+                            onClick={this.onClickNicknameAvailable}>중복검사</button>
                         </div>
 
                         <div className="form-group">
@@ -89,7 +142,8 @@ class Register extends Component {
                             <input type="email" className="form-control" placeholder="이메일" onChange={this.emailChange}/>
                         </div>
 
-                        <button type="submit" className="btn btn-dark btn-lg btn-block" onClick={this.onClickSubmit}>회원가입</button>
+                        <button type="submit" className="btn btn-dark btn-lg btn-block" 
+                        onClick={this.onClickSubmit}>회원가입</button>
                     </div>
                 </div>
             </div>

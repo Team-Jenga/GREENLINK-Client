@@ -16,10 +16,14 @@
 }
 
 .register-form .form-group {
-    width: 100%;
+    width: 120%;
     margin-top: 15px;
 }
 
 .register-form .btn {
     margin-top: 20px;
+}
+
+.register-form .btn-sm {
+    margin-top: 10px;
 }

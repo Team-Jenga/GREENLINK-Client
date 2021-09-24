@@ -1,17 +1,39 @@
 import React, { Component } from 'react';
-import { MenuItems } from './MenuItems';
-import { Button } from './MenuButton';
 import '../../css/Navbar.css';
+
+import { MenuItems } from './MenuItems';
+import { MenuItems2 } from './MenuItems';
+import { Button } from './MenuButton';
 import { Link } from 'react-router-dom';
 
 class Navbar extends Component {
-    state = { clicked: false }
+    state = { clicked: false };
+
+    checkLogin() {
+        if (localStorage.getItem('id') != null) {
+            return true;
+        } else {return false;}
+    }
 
     handleClick = () => {
-        this.setState({ clicked: !this.state.clicked })
+        this.setState({ clicked: !this.state.clicked });
+    }
+
+    onClickLogout = () => {
+        localStorage.clear();
     }
 
     render() {
+        const isLoggedIn = this.checkLogin();
+        console.log(isLoggedIn);
+        
+        let button = null;
+        if (isLoggedIn) {
+            button = <Link to="/"><Button className="logout" onClick={this.onClickLogout}>로그아웃</Button></Link>;
+        } else {
+            button = <Link to="/login"><Button className="login">로그인</Button></Link>;
+        }
+
         return(
             <nav className='NavbarItems'>
                 <div className='NavbarLogo'>
@@ -21,7 +43,16 @@ class Navbar extends Component {
                     <i className={this.state.clicked ? 'fas fa-times' : 'fas fa-bars'}></i>
                 </div>
                 <ul className={this.state.clicked ? 'my-nav-menu active' : 'my-nav-menu'}>
-                    {MenuItems.map((item, index) => {
+                    {isLoggedIn && 
+                    MenuItems2.map((item, index) => {
+                        return (
+                            <li>
+                                <Link to={item.url} className={item.cName}>{item.title}</Link> 
+                            </li>
+                        )
+                    })}
+                    {!isLoggedIn && 
+                    MenuItems.map((item, index) => {
                         return (
                             <li>
                                 <Link to={item.url} className={item.cName}>{item.title}</Link> 
@@ -29,8 +60,7 @@ class Navbar extends Component {
                         )
                     })}
                 </ul>
-                <Link to="/login"><Button className='login'>로그인</Button></Link>
-                <Link to="/register"><Button className='register'>회원가입</Button></Link>
+                {button}
             </nav>
         )
     }

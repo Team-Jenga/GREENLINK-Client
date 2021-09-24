@@ -11,6 +11,7 @@ import Login from './components/Login';
 import List from './components/notice/List';
 import Read from './components/notice/Read';
 import Write from './components/notice/Write';
+import modify from './components/notice/modify'
 
 class App extends Component {
   render() {
@@ -27,6 +28,7 @@ class App extends Component {
             
             <Route exact path="/notice/read/:id?" component={Read} />     
             <Route exact path="/notice/write" component={Write} />
+            <Route exact path="/notice/modify/:id?" component={modify} />
           </Switch>
         </div>
       </BrowserRouter>

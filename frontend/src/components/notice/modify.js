@@ -13,6 +13,9 @@ class Read extends Component {
         };
     };
     
+    titleWrite = (e) => {this.setState({notice_title: e.target.value})};
+    contentWrite = (e) => {this.setState({notice_content: e.target.value})};
+
     loadingData = async() => {
         try {
             const {id} = this.props.match.params;
@@ -20,6 +23,7 @@ class Read extends Component {
             const response = await axios.get(`http://ec2-52-78-154-227.ap-northeast-2.compute.amazonaws.com/api/notice/${id}`);
             this.setState({
                 board:response.data,
+                id:id,
             });
             console.log(response.data);
         } catch(e) {
@@ -27,39 +31,36 @@ class Read extends Component {
         }
     };
 
+    onClickSubmit = () => {
+        if (this.state.notice_title !== "" && this.state.notice_content !== "") {
+        axios.put(`http://ec2-52-78-154-227.ap-northeast-2.compute.amazonaws.com/api/notice/${this.state.id}`, {
+            notice_title: this.state.notice_title,
+            notice_content: this.state.notice_content,
+        }).then(function (response) {
+            console.log(response);
+        }).catch(function (error) {
+            console.log(error);
+        }).then(alert('공지사항 수정 성공'));
+    } else {
+        alert("모두 입력해주세요");
+        };
+    };
+
     componentDidMount() { 
         const { loadingData } = this; 
         loadingData(); 
     }
-    
-    deleteRow(id, e){  
-        axios.delete(`http://ec2-52-78-154-227.ap-northeast-2.compute.amazonaws.com/api/notice/${id}`)  
-          .then(res => {  
-            console.log(res);  
-            console.log(res.data);  
-          })  
-        
-      }  
 
     render() {
-        const {board} = this.state;
-        let content = this.state.board.notice_content; 
-
+        const {board} = this.state; 
         return (
             <Wrap>
-                <h2>{board.notice_title}</h2>
-                <h6 align="right">조회수 {board.notice_views}</h6>
-                <h4>{board.member}</h4>
-                <h5 align="right">{board.created_at} </h5>
+                <h2><input type="text" name="title" onChange={this.titleWrite} defaultValue={board.notice_title}></input></h2>
+                <h5 align="right"> {board.created_at} </h5>
                 <h5 align="right"> {localStorage.getItem('id')} </h5>
-                {
-                    content.split('\n').map( line => {
-                    return (<span>{line}<br/></span>)})
-                }
+                <p><textarea type="text" name="content" onChange={this.contentWrite} defaultValue={board.notice_content}></textarea></p>
                 <Button>
-                    <Link to="/notice">목록</Link>
-                    <Link to="/notice" onClick={(e) => {this.deleteRow(board.id, e); alert("삭제되었습니다.");} }>삭제</Link>
-                    <Link to={`/notice/modify/${board.id}`}>수정</Link>
+                    <Link to="/notice" onClick={() => {this.onClickSubmit()}}>수정</Link>
                 </Button>
             </Wrap>
         );
@@ -75,6 +76,16 @@ const Wrap = styled.div`
     }
     p {
         min-height: 200px;
+    }
+    textarea {
+        width: 100%;
+        height: 100px;
+        border: 1px solid #ccc;
+    }
+    input {
+        width:100%;
+        height:40px;
+        border:1px solid #ccc;
     }
 `;
 

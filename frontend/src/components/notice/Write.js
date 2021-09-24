@@ -36,6 +36,7 @@ class Write extends Component {
     } else {
         alert("모두 입력해주세요");
         };
+
     };
 
     render() {
@@ -49,7 +50,7 @@ class Write extends Component {
                     <textarea type="text" name="content" onChange={this.contentWrite}/>
                 </p>
                 <Button>
-                    <Link to="/notice" onClick={() => {this.onClickSubmit()} }>전송하기</Link>
+                    <Link to="/notice" onClick={() => {this.onClickSubmit()} }>작성</Link>
                     <Link to="/notice">목록</Link>
                 </Button>
             </Wrap>

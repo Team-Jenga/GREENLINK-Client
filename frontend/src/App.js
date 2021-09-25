@@ -5,10 +5,13 @@ import {BrowserRouter, Route, Switch} from "react-router-dom";
 import CarouselContainer from './components/Home';
 import About from './components/About';
 import Campaign from './components/Campaign';
-import Notice from './components/Notice';
-import MyPage from './components/MyPage';
 import Login from './components/Login';
 import Register from './components/Register';
+
+import List from './components/notice/List';
+import Read from './components/notice/Read';
+import Write from './components/notice/Write';
+import modify from './components/notice/modify'
 
 class App extends Component {
   render() {
@@ -19,10 +22,11 @@ class App extends Component {
             <Route exact path="/" component={CarouselContainer} />
             <Route exact path="/about" component={About} />
             <Route exact path="/campaign" component={Campaign} />
-            <Route exact path="/notice" component={Notice} />
-            <Route exact path="/mypage" component={MyPage} />
+            <Route exact path="/notice" component={List} />
             <Route exact path="/login" component={Login} />
-            <Route exact path="/register" component={Register} />
+            <Route exact path="/notice/read/:id?" component={Read} />     
+            <Route exact path="/notice/write" component={Write} />
+            <Route exact path="/notice/modify/:id?" component={modify} />
           </Switch>
         </div>
       </BrowserRouter>

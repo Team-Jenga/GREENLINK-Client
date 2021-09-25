@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Navbar from '../Navbar/Navbar'; 
 import { Link } from 'react-router-dom';
  
 import axios from 'axios'; 
@@ -25,28 +24,49 @@ class List extends Component {
 
     render() { 
         const { boards } = this.state; 
-        return (
-            <div>
-                <Navbar/>
-                <Wrap> 
-                    <h2>공지사항</h2>
-                {boards.map((item)=> {
-                    return (
-                        <ListItem key = {item.id}>
-                            <Link to={`/notice/read/${item.id}`}>
-                                <h3>{item.notice_title}</h3>
-                                <p>{item.notice_content}</p>
-                            </Link>
-                        </ListItem>
-                    )
-                })}
-                <Button>
-                    <Link to="/notice/write">글쓰기</Link>
-                </Button>
-                </Wrap>
+        if (localStorage.getItem("auth") === "admin") {
+            return (
+                <div>
+                    <Wrap> 
+                        <h2>공지사항</h2>
+                    {boards.map((item)=> {
+                        return (
+                            <ListItem key = {item.id}>
+                                <Link to={`/notice/read/${item.id}`}>
+                                    <h3>{item.notice_title}</h3>
+                                    <p>{item.notice_content}</p>
+                                </Link>
+                            </ListItem>
+                        )
+                    })}
+                    <Button>
+                        <Link to="/notice/write">글쓰기</Link>
+                    </Button>
+                    </Wrap>
 
-            </div>
-        );
+                </div>
+            );
+        }
+        else {
+            return (
+                <div>
+                    <Wrap> 
+                        <h2>공지사항</h2>
+                    {boards.map((item)=> {
+                        return (
+                            <ListItem key = {item.id}>
+                                <Link to={`/notice/read/${item.id}`}>
+                                    <h3>{item.notice_title}</h3>
+                                    <p>{item.notice_content}</p>
+                                </Link>
+                            </ListItem>
+                        )
+                    })}
+                    </Wrap>
+
+                </div>
+            );
+        }
     }
 }
 

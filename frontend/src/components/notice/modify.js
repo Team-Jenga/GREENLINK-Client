@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Navbar from '../Navbar/Navbar';
 import {Link} from 'react-router-dom';
 
 import axios from 'axios';
@@ -56,8 +55,6 @@ class Read extends Component {
         const {board} = this.state; 
         return (
             <div>
-                
-                <Navbar/>
                 <Wrap>
                     <h2><input type="text" name="title" onChange={this.titleWrite} defaultValue={board.notice_title}></input></h2>
                     <h5 align="right"> {board.created_at} </h5>

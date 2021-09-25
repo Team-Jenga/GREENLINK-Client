@@ -12,12 +12,15 @@ import List from './components/notice/List';
 import Read from './components/notice/Read';
 import Write from './components/notice/Write';
 import modify from './components/notice/modify'
+import Navbar from './components/Navbar/Navbar';
+
 
 class App extends Component {
   render() {
     return (
       <BrowserRouter>
         <div className="App">
+        <Navbar/>
           <Switch>
             <Route exact path="/" component={CarouselContainer} />
             <Route exact path="/about" component={About} />

@@ -3,7 +3,6 @@ import '../css/Login.css';
 
 import { postSignIn } from '../api/apiClient';
 import { Link } from 'react-router-dom';
-import Navbar from './Navbar/Navbar';
 
 class Login extends Component {
     constructor() {
@@ -18,19 +17,18 @@ class Login extends Component {
     pwChange = (e) => {this.setState({member_pw: e.target.value})};
 
     onClickLogin = () => {
-        if (this.state.member_id != "" &&
-            this.state.member_pw != "") {
+        if (this.state.member_id !== "" &&
+            this.state.member_pw !== "") {
                 let member_id = this.state.member_id;
                 postSignIn({
                     member_id: this.state.member_id,
                     member_pw: this.state.member_pw
                 }).then(function(res) {
-                    console.log(res);
                     
                     // 로그인 성공
                     if (res.status === 200) {
-                        console.log(res);
                         localStorage.setItem("id", member_id);
+                        localStorage.setItem("auth", res.data.auth)
                         document.location.href = "/";
                     }
                 }).catch(function(err) {
@@ -52,7 +50,6 @@ class Login extends Component {
         console.log(this.state);
         return(
             <div>
-                <Navbar/>
                 <div className="login-content">
                     <div className="login-form">
 

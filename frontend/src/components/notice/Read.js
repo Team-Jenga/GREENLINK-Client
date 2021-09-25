@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
-import Navbar from '../Navbar/Navbar';
-
 import axios from 'axios';
 import styled from 'styled-components';
 
@@ -45,26 +43,42 @@ class Read extends Component {
 
     render() {
         const {board} = this.state;
+        if (localStorage.getItem("auth") === "admin") {
+            return (
+                <div>
+                    <Wrap>
+                        <h2>{board.notice_title}</h2>
+                        <h5 align="right">{board.created_at} </h5>
+                        <h6 align="right"> 작성자 : {board.member} </h6>
+                        <h6 align="right"> 조회수 : {board.notice_views}</h6>
+                        <p>{board.notice_content}</p>
+                        <Button>
+                            <Link to="/notice">목록</Link>
+                            <Link to="/notice" onClick={(e) => {this.deleteRow(board.id, e); alert("삭제되었습니다.");} }>삭제</Link>
+                            <Link to={`/notice/modify/${board.id}`}>수정</Link>
+                        </Button>
+                    </Wrap>
 
-        return (
-            <div>
-                
-                <Navbar/>
-                <Wrap>
-                    <h2>{board.notice_title}</h2>
-                    <h6 align="right">조회수 {board.notice_views}</h6>
-                    <h5 align="right">{board.created_at} </h5>
-                    <h5 align="right"> {board.member} </h5>
-                    <p>{board.notice_content}</p>
-                    <Button>
-                        <Link to="/notice">목록</Link>
-                        <Link to="/notice" onClick={(e) => {this.deleteRow(board.id, e); alert("삭제되었습니다.");} }>삭제</Link>
-                        <Link to={`/notice/modify/${board.id}`}>수정</Link>
-                    </Button>
-                </Wrap>
+                </div>
+            );
+        }
+        else {
+            return (
+                <div>
+                    <Wrap>
+                        <h2>{board.notice_title}</h2>
+                        <h5 align="right">{board.created_at} </h5>
+                        <h6 align="right"> 작성자 : {board.member} </h6>
+                        <h6 align="right"> 조회수 : {board.notice_views}</h6>
+                        <p>{board.notice_content}</p>
+                        <Button>
+                            <Link to="/notice">목록</Link>
+                        </Button>
+                    </Wrap>
 
-            </div>
-        );
+                </div>
+            );
+        }
     }
 }
 

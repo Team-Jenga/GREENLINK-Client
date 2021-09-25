@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
-import Navbar from '../Navbar/Navbar';
 
 import axios from 'axios';
 import styled from 'styled-components';
@@ -27,7 +26,7 @@ class Write extends Component {
         axios.post('http://ec2-52-78-154-227.ap-northeast-2.compute.amazonaws.com/api/notice', {
             notice_title: this.state.notice_title,
             notice_content: this.state.notice_content,
-            member: this.state.member,
+            member: localStorage.getItem('id'),
         }).then(function (response) {
             console.log(response);
         }).catch(function (error) {
@@ -42,8 +41,6 @@ class Write extends Component {
     render() {
         return(
             <div>
-                
-                <Navbar/>
                 <Wrap>
                     <h2>Write</h2>
                     <p>

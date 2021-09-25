@@ -44,6 +44,25 @@ class Read extends Component {
     render() {
         const {board} = this.state;
         let content = this.state.board.notice_content; 
+        const lineArr = []
+        let line = ""
+        for (let i = 0 ; i < content.length ; i++) {
+            if (content[i] === '\n') {
+                lineArr.push(line)
+                line = ""
+            } else {
+                line = line.concat(content[i]);
+            }
+        }
+        console.log(lineArr)
+
+        const rendring = () => {
+            const arr = [];
+            for (let i = 0 ; i < lineArr.length; i++) {
+                arr.push(<span key={i}>{lineArr[i]}<br/></span>)
+            }
+            return arr;
+        }
 
         return (
             <Wrap>
@@ -52,10 +71,7 @@ class Read extends Component {
                 <h4>{board.member}</h4>
                 <h5 align="right">{board.created_at} </h5>
                 <h5 align="right"> {localStorage.getItem('id')} </h5>
-                {
-                    content.split('\n').map( line => {
-                    return (<span>{line}<br/></span>)})
-                }
+                {rendring()}
                 <Button>
                     <Link to="/notice">목록</Link>
                     <Link to="/notice" onClick={(e) => {this.deleteRow(board.id, e); alert("삭제되었습니다.");} }>삭제</Link>

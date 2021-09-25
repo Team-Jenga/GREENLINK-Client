@@ -21,6 +21,7 @@ class Navbar extends Component {
 
     onClickLogout = () => {
         localStorage.clear();
+        window.location.reload();
     }
 
     render() {
@@ -47,7 +48,7 @@ class Navbar extends Component {
                     MenuItems2.map((item, index) => {
                         return (
                             <li>
-                                <Link to={item.url} className={item.cName}>{item.title}</Link> 
+                                <Link to={item.url} className={item.cName} onClick={item.title === "로그아웃" ? this.onClickLogout : undefined }>{item.title}</Link> 
                             </li>
                         )
                     })}
@@ -55,7 +56,7 @@ class Navbar extends Component {
                     MenuItems.map((item, index) => {
                         return (
                             <li>
-                                <Link to={item.url} className={item.cName}>{item.title}</Link> 
+                                <Link to={item.url} className={item.cName}>{item.title}</Link>
                             </li>
                         )
                     })}

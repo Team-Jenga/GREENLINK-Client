@@ -61,7 +61,7 @@ class Read extends Component {
                 <Wrap>
                     <h2><input type="text" name="title" onChange={this.titleWrite} defaultValue={board.notice_title}></input></h2>
                     <h5 align="right"> {board.created_at} </h5>
-                    <h5 align="right"> {localStorage.getItem('id')} </h5>
+                    <h5 align="right"> {board.member} </h5>
                     <p><textarea type="text" name="content" onChange={this.contentWrite} defaultValue={board.notice_content}></textarea></p>
                     <Button>
                         <Link to="/notice" onClick={() => {this.onClickSubmit()}}>수정</Link>

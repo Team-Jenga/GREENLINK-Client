@@ -12,8 +12,7 @@ class Write extends Component {
         this.state ={
             notice_title:'',
             notice_content:'',
-            member:'',
-            created_at:new Date()
+            member: '',
         };
     };
 
@@ -29,7 +28,6 @@ class Write extends Component {
             notice_title: this.state.notice_title,
             notice_content: this.state.notice_content,
             member: this.state.member,
-            created_at: this.state.created_at
         }).then(function (response) {
             console.log(response);
         }).catch(function (error) {

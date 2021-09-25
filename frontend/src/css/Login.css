@@ -1,0 +1,43 @@
+.login-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 100px;
+    margin-bottom: 300px;
+}
+
+.login-form {
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.login-form .form-group {
+    width: 100%;
+    margin-top: 15px;
+}
+
+.login-form .btn {
+    margin-top: 15px;
+}
+
+.bot {
+    margin-top: 20px;
+    width: 100%;
+}
+
+.bot-right {
+    float: right;
+    text-decoration: none;
+    color: black;
+}
+
+.bot-left {
+    float: left;
+    text-decoration: none;
+    color: black;
+}
+

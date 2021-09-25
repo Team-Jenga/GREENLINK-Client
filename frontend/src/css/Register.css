@@ -1,0 +1,29 @@
+.register-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+    margin-bottom: 100px;
+}
+
+.register-form {
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+.register-form .form-group {
+    width: 120%;
+    margin-top: 15px;
+}
+
+.register-form .btn {
+    margin-top: 20px;
+}
+
+.register-form .btn-sm {
+    margin-top: 10px;
+}

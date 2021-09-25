@@ -6,7 +6,7 @@ class Campaign extends Component {
         return(
         <div>
             <Navbar/>
-            <h1>Campagin</h1>
+            <h1>My Page</h1>
         </div>
         );
     }

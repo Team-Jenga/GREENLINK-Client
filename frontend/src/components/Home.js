@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Carousel, Nav } from 'react-bootstrap';
+import { Carousel } from 'react-bootstrap';
 
 import image1 from './assets/images/1.PNG'
 import image2 from './assets/images/2.PNG'

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
+import Navbar from '../Navbar/Navbar';
+
 import axios from 'axios';
 import styled from 'styled-components';
 
@@ -65,19 +67,24 @@ class Read extends Component {
         }
 
         return (
-            <Wrap>
-                <h2>{board.notice_title}</h2>
-                <h6 align="right">조회수 {board.notice_views}</h6>
-                <h4>{board.member}</h4>
-                <h5 align="right">{board.created_at} </h5>
-                <h5 align="right"> {localStorage.getItem('id')} </h5>
-                {rendring()}
-                <Button>
-                    <Link to="/notice">목록</Link>
-                    <Link to="/notice" onClick={(e) => {this.deleteRow(board.id, e); alert("삭제되었습니다.");} }>삭제</Link>
-                    <Link to={`/notice/modify/${board.id}`}>수정</Link>
-                </Button>
-            </Wrap>
+            <div>
+                
+                <Navbar/>
+                <Wrap>
+                    <h2>{board.notice_title}</h2>
+                    <h6 align="right">조회수 {board.notice_views}</h6>
+                    <h4>{board.member}</h4>
+                    <h5 align="right">{board.created_at} </h5>
+                    <h5 align="right"> {localStorage.getItem('id')} </h5>
+                    {rendring()}
+                    <Button>
+                        <Link to="/notice">목록</Link>
+                        <Link to="/notice" onClick={(e) => {this.deleteRow(board.id, e); alert("삭제되었습니다.");} }>삭제</Link>
+                        <Link to={`/notice/modify/${board.id}`}>수정</Link>
+                    </Button>
+                </Wrap>
+
+            </div>
         );
     }
 }

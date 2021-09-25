@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
+import Navbar from '../Navbar/Navbar';
+
 import axios from 'axios';
 import styled from 'styled-components';
 
@@ -41,23 +43,27 @@ class Write extends Component {
 
     render() {
         return(
-            <Wrap>
-                <h2>Write</h2>
-                <p>
-                    <input type ="text" name="title" onChange={this.titleWrite}/>
-                </p>
-                <p>
-                    <textarea type="text" name="content" onChange={this.contentWrite}/>
-                </p>
-                <Button>
-                    <Link to="/notice" onClick={() => {this.onClickSubmit()} }>작성</Link>
-                    <Link to="/notice">목록</Link>
-                </Button>
-            </Wrap>
+            <div>
+                
+                <Navbar/>
+                <Wrap>
+                    <h2>Write</h2>
+                    <p>
+                        <input type ="text" name="title" onChange={this.titleWrite}/>
+                    </p>
+                    <p>
+                        <textarea type="text" name="content" onChange={this.contentWrite}/>
+                    </p>
+                    <Button>
+                        <Link to="/notice" onClick={() => {this.onClickSubmit()} }>작성</Link>
+                        <Link to="/notice">목록</Link>
+                    </Button>
+                </Wrap>
+
+            </div>
         );
     }
 }
-
 
 const Wrap = styled.div`
     padding:20px;

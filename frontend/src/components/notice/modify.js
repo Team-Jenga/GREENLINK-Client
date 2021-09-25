@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
+import Navbar from '../Navbar/Navbar';
 import {Link} from 'react-router-dom';
+
 import axios from 'axios';
 import styled from 'styled-components';
-
 
 class Read extends Component {
     constructor() {
@@ -54,15 +55,20 @@ class Read extends Component {
     render() {
         const {board} = this.state; 
         return (
-            <Wrap>
-                <h2><input type="text" name="title" onChange={this.titleWrite} defaultValue={board.notice_title}></input></h2>
-                <h5 align="right"> {board.created_at} </h5>
-                <h5 align="right"> {localStorage.getItem('id')} </h5>
-                <p><textarea type="text" name="content" onChange={this.contentWrite} defaultValue={board.notice_content}></textarea></p>
-                <Button>
-                    <Link to="/notice" onClick={() => {this.onClickSubmit()}}>수정</Link>
-                </Button>
-            </Wrap>
+            <div>
+                
+                <Navbar/>
+                <Wrap>
+                    <h2><input type="text" name="title" onChange={this.titleWrite} defaultValue={board.notice_title}></input></h2>
+                    <h5 align="right"> {board.created_at} </h5>
+                    <h5 align="right"> {localStorage.getItem('id')} </h5>
+                    <p><textarea type="text" name="content" onChange={this.contentWrite} defaultValue={board.notice_content}></textarea></p>
+                    <Button>
+                        <Link to="/notice" onClick={() => {this.onClickSubmit()}}>수정</Link>
+                    </Button>
+                </Wrap>
+
+            </div>
         );
     }
 }

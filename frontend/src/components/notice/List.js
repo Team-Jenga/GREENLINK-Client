@@ -29,20 +29,20 @@ class List extends Component {
             return (
                 <div>
                     <Wrap> 
-                        <h2>공지사항</h2>
-                    {boards.map((item)=> {
-                        return (
-                            <ListItem key = {item.id}>
-                                <Link to={`/notice/read/${item.id}`}>
-                                    <h3>{item.notice_title}</h3>
-                                    <p>{item.notice_content}</p>
-                                </Link>
-                            </ListItem>
-                        )
-                    })}
-                    <Button>
-                        <Link to="/notice/write">글쓰기</Link>
-                    </Button>
+                        <h2><b>공지사항</b></h2>
+                        {boards.map((item)=> {
+                            return (
+                                <ListItem key = {item.id}>
+                                    <Link to={`/notice/read/${item.id}`}>
+                                        <h3>{item.notice_title}</h3>
+                                        <p>{item.notice_content}</p>
+                                    </Link>
+                                </ListItem>
+                            )
+                        })}
+                        <Button>
+                            <Link to="/notice/write">글쓰기</Link>
+                        </Button>
                     </Wrap>
 
                 </div>
@@ -52,17 +52,17 @@ class List extends Component {
             return (
                 <div>
                     <Wrap> 
-                        <h2>공지사항</h2>
-                    {boards.map((item)=> {
-                        return (
-                            <ListItem key = {item.id}>
-                                <Link to={`/notice/read/${item.id}`}>
-                                    <h3>{item.notice_title}</h3>
-                                    <p>{item.notice_content}</p>
-                                </Link>
-                            </ListItem>
-                        )
-                    })}
+                        <h2><b>공지사항</b></h2>
+                        {boards.map((item)=> {
+                            return (
+                                <ListItem key = {item.id}>
+                                    <Link to={`/notice/read/${item.id}`}>
+                                        <h3>{item.notice_title}</h3>
+                                        <p>{item.notice_content}</p>
+                                    </Link>
+                                </ListItem>
+                            )
+                        })}
                     </Wrap>
 
                 </div>
@@ -73,6 +73,7 @@ class List extends Component {
 
 const Wrap = styled.div`
     padding:20px;
+    margin: 10px 230px 10px 230px;
 `;
 
 const ListItem = styled.div`

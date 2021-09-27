@@ -72,6 +72,7 @@ class Modify extends Component {
 
 const Wrap = styled.div`
     padding:20px;
+    margin: 10px 230px 10px 230px;
     h2 {
         padding-bottom:20px;
         border-bottom:1px solid #ccc;
@@ -81,7 +82,7 @@ const Wrap = styled.div`
     }
     textarea {
         width: 100%;
-        height: 100px;
+        height: 400px;
         border: 1px solid #ccc;
     }
     input {

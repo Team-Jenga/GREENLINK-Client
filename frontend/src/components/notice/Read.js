@@ -100,6 +100,7 @@ class Read extends Component {
 
 
 const Wrap = styled.div`
+    margin: 10px 230px 10px 230px;
     padding:20px;
     h2 {
         padding-bottom:20px;

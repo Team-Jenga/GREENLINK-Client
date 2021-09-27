@@ -62,6 +62,7 @@ class Write extends Component {
 
 const Wrap = styled.div`
     padding:20px;
+    margin: 10px 230px 10px 230px;
     input {
         width:100%;
         height:20px;
@@ -69,7 +70,7 @@ const Wrap = styled.div`
     }
     textarea {
         width: 100%;
-        height: 100px;
+        height: 400px;
         border: 1px solid #ccc;
     }
 `;

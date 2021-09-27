@@ -1,0 +1,110 @@
+import React, { Component } from 'react';
+import {Link} from 'react-router-dom';
+
+import axios from 'axios';
+import styled from 'styled-components';
+
+
+class Write extends Component {
+    constructor() {
+        super();
+        this.state ={
+            member_id:'',
+            event_title:'',
+            event_location:'',
+            event_management:'',
+            event_period_start:'',
+            event_period_end:'',
+            event_url:'',
+            event_image_url:'',
+            event_content:''
+        };
+    };
+
+    // idWrite = (e) => {this.setState({id: e.target.value})};
+    titleWrite = (e) => {this.setState({notice_title: e.target.value})};
+    contentWrite = (e) => {this.setState({notice_content: e.target.value})};
+    // memberWrite = (e) => {this.setState({member: e.target.value})};
+    // createWrite = (e) => {this.setState({created_at: e.target.value})};
+
+    onClickSubmit = () => {
+        if (this.state.notice_title !== "" && this.state.notice_content !== "") {
+        axios.post('http://ec2-52-78-154-227.ap-northeast-2.compute.amazonaws.com/create_event', {
+            notice_title: this.state.notice_title,
+            notice_content: this.state.notice_content,
+            member: localStorage.getItem('id'),
+        }).then(function (response) {
+            console.log(response);
+        }).catch(function (error) {
+            console.log(error);
+        }).then(alert('공지사항 작성 성공'));
+    } else {
+        alert("모두 입력해주세요");
+        };
+
+    };
+
+    render() {
+        return(
+            <div>
+                <Wrap>
+                    <h2>Write</h2>
+                    <p>
+                        <input type ="text" name="title" onChange={this.titleWrite}/>
+                    </p>
+                    <p>
+                        <textarea type="text" name="content" onChange={this.contentWrite}/>
+                    </p>
+                    <Button>
+                        <Link to="/campaign" onClick={() => {this.onClickSubmit()} }>작성</Link>
+                        <Link to="/campaign">목록</Link>
+                    </Button>
+                </Wrap>
+
+            </div>
+        );
+    }
+}
+
+const Wrap = styled.div`
+    padding:20px;
+    margin: 10px 230px 10px 230px;
+    input {
+        width:100%;
+        height:20px;
+        border:1px solid #ccc;
+    }
+    textarea {
+        width: 100%;
+        height: 400px;
+        border: 1px solid #ccc;
+    }
+`;
+
+const Button = styled.div`
+    border-top: 1px solid #eee;
+    padding:20px;
+    button {
+        float:right;
+        padding:10px 20px;
+        border-radius:5px;
+        text-decoration:none;
+        background:#212121;
+        color:#fff;
+        font-size:16px;
+    }
+    a{
+        float:right;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-decoration:none;
+        border:1px solid #ddd;
+        color:#424242;
+        font-size:16px;
+    }
+    & > button + a{
+        margin-right:5px;
+    }
+`;
+
+export default Write;

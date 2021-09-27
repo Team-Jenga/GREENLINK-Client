@@ -38,24 +38,24 @@ class Navbar extends Component {
         return(
             <nav className='NavbarItems'>
                 <div className='NavbarLogo'>
-                    <Link to="/"> <img className ='logo' src='images/logo.png' alt='logo' title='logo'></img> </Link>
+                    <Link to="/"> <img className ='logo' src='../../images/logo.png' alt='logo' title='logo'></img> </Link>
                 </div>
                 <div className='menu-icon' onClick={this.handleClick}>
                     <i className={this.state.clicked ? 'fas fa-times' : 'fas fa-bars'}></i>
                 </div>
                 <ul className={this.state.clicked ? 'my-nav-menu active' : 'my-nav-menu'}>
                     {isLoggedIn && 
-                    MenuItems2.map((item, index) => {
+                    MenuItems2.map((item) => {
                         return (
-                            <li>
-                                <Link to={item.url} className={item.cName} onClick={item.title === "로그아웃" ? this.onClickLogout : undefined }>{item.title}</Link> 
+                            <li key = {item.id}>
+                                <Link to={item.url} className={item.cName} onClick={item.title === "로그아웃" ? this.onClickLogout : undefined } >{item.title}</Link> 
                             </li>
                         )
                     })}
                     {!isLoggedIn && 
-                    MenuItems.map((item, index) => {
+                    MenuItems.map((item) => {
                         return (
-                            <li>
+                            <li key = {item.id}>
                                 <Link to={item.url} className={item.cName}>{item.title}</Link>
                             </li>
                         )

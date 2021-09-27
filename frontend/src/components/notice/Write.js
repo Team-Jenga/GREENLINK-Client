@@ -98,6 +98,6 @@ const Button = styled.div`
     & > button + a{
         margin-right:5px;
     }
-}`;
+`;
 
 export default Write;

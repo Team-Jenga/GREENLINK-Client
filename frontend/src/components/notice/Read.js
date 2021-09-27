@@ -43,7 +43,11 @@ class Read extends Component {
 
     render() {
         const {board} = this.state;
-        if (localStorage.getItem("auth") === "admin") {
+        localStorage.setItem("content", board.notice_content)
+        let content = localStorage.getItem("content")
+        localStorage.removeItem("content")
+
+        if (localStorage.getItem("auth") === "admin" && localStorage.getItem("id") === board.member) {
             return (
                 <div>
                     <Wrap>
@@ -51,7 +55,13 @@ class Read extends Component {
                         <h5 align="right">{board.created_at} </h5>
                         <h6 align="right"> 작성자 : {board.member} </h6>
                         <h6 align="right"> 조회수 : {board.notice_views}</h6>
-                        <p>{board.notice_content}</p>
+                        <p>
+                            {
+                                content.split("\n").map(line => {
+                                    return (<span>{line}<br/></span>)
+                                })
+                            }
+                        </p>
                         <Button>
                             <Link to="/notice">목록</Link>
                             <Link to="/notice" onClick={(e) => {this.deleteRow(board.id, e); alert("삭제되었습니다.");} }>삭제</Link>
@@ -70,7 +80,13 @@ class Read extends Component {
                         <h5 align="right">{board.created_at} </h5>
                         <h6 align="right"> 작성자 : {board.member} </h6>
                         <h6 align="right"> 조회수 : {board.notice_views}</h6>
-                        <p>{board.notice_content}</p>
+                        <p>
+                            {
+                                content.split("\n").map(line => {
+                                    return (<span>{line}<br/></span>)
+                                })
+                            }
+                        </p>
                         <Button>
                             <Link to="/notice">목록</Link>
                         </Button>

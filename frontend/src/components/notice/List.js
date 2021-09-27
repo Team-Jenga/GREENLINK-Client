@@ -24,6 +24,7 @@ class List extends Component {
 
     render() { 
         const { boards } = this.state; 
+
         if (localStorage.getItem("auth") === "admin") {
             return (
                 <div>

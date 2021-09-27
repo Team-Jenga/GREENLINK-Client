@@ -4,12 +4,15 @@ import {Link} from 'react-router-dom';
 import axios from 'axios';
 import styled from 'styled-components';
 
-class Read extends Component {
+class Modify extends Component {
     constructor() {
         super();
         this.state ={
             id:'',
-            board:[],
+            notice_title:'',
+            notice_content:'',
+            member:'',
+            created_at:'',
         };
     };
     
@@ -22,10 +25,10 @@ class Read extends Component {
             console.log(id)
             const response = await axios.get(`http://ec2-52-78-154-227.ap-northeast-2.compute.amazonaws.com/api/notice/${id}`);
             this.setState({
-                board:response.data,
                 id:id,
+                notice_title:response.data.notice_title,
+                notice_content:response.data.notice_content,
             });
-            console.log(response.data);
         } catch(e) {
             console.log(e);
         }
@@ -49,27 +52,23 @@ class Read extends Component {
     componentDidMount() { 
         const { loadingData } = this; 
         loadingData(); 
-    }
+    };
 
     render() {
-        const {board} = this.state; 
         return (
             <div>
                 <Wrap>
-                    <h2><input type="text" name="title" onChange={this.titleWrite} defaultValue={board.notice_title}></input></h2>
-                    <h5 align="right"> {board.created_at} </h5>
-                    <h5 align="right"> {board.member} </h5>
-                    <p><textarea type="text" name="content" onChange={this.contentWrite} defaultValue={board.notice_content}></textarea></p>
+                    <h2><input type="text" name="title" onChange={this.titleWrite} defaultValue={this.state.notice_title}></input></h2>
+                    <p><textarea type="text" name="content" onChange={this.contentWrite} defaultValue={this.state.notice_content}></textarea></p>
+                    <h5 align="right"> {this.state.created_at} </h5>
                     <Button>
                         <Link to="/notice" onClick={() => {this.onClickSubmit()}}>수정</Link>
                     </Button>
                 </Wrap>
-
             </div>
         );
     }
 }
-
 
 const Wrap = styled.div`
     padding:20px;
@@ -107,6 +106,6 @@ const Button = styled.div`
     a + a{
         margin-right: 5px;
     }
-}`;
+`;
 
-export default Read;
+export default Modify;

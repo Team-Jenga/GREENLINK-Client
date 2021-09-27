@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
-import Navbar from '../Navbar/Navbar';
-
 import axios from 'axios';
 import styled from 'styled-components';
 
@@ -45,52 +43,64 @@ class Read extends Component {
 
     render() {
         const {board} = this.state;
-        let content = this.state.board.notice_content; 
-        const lineArr = []
-        let line = ""
-        for (let i = 0 ; i < content.length ; i++) {
-            if (content[i] === '\n') {
-                lineArr.push(line)
-                line = ""
-            } else {
-                line = line.concat(content[i]);
-            }
+        localStorage.setItem("content", board.notice_content)
+        let content = localStorage.getItem("content")
+        localStorage.removeItem("content")
+
+        if (localStorage.getItem("auth") === "admin" && localStorage.getItem("id") === board.member) {
+            return (
+                <div>
+                    <Wrap>
+                        <h2>{board.notice_title}</h2>
+                        <h5 align="right">{board.created_at} </h5>
+                        <h6 align="right"> 작성자 : {board.member} </h6>
+                        <h6 align="right"> 조회수 : {board.notice_views}</h6>
+                        <p>
+                            {
+                                content.split("\n").map(line => {
+                                    return (<span>{line}<br/></span>)
+                                })
+                            }
+                        </p>
+                        <Button>
+                            <Link to="/notice">목록</Link>
+                            <Link to="/notice" onClick={(e) => {this.deleteRow(board.id, e); alert("삭제되었습니다.");} }>삭제</Link>
+                            <Link to={`/notice/modify/${board.id}`}>수정</Link>
+                        </Button>
+                    </Wrap>
+
+                </div>
+            );
         }
-        console.log(lineArr)
+        else {
+            return (
+                <div>
+                    <Wrap>
+                        <h2>{board.notice_title}</h2>
+                        <h5 align="right">{board.created_at} </h5>
+                        <h6 align="right"> 작성자 : {board.member} </h6>
+                        <h6 align="right"> 조회수 : {board.notice_views}</h6>
+                        <p>
+                            {
+                                content.split("\n").map(line => {
+                                    return (<span>{line}<br/></span>)
+                                })
+                            }
+                        </p>
+                        <Button>
+                            <Link to="/notice">목록</Link>
+                        </Button>
+                    </Wrap>
 
-        const rendring = () => {
-            const arr = [];
-            for (let i = 0 ; i < lineArr.length; i++) {
-                arr.push(<span key={i}>{lineArr[i]}<br/></span>)
-            }
-            return arr;
+                </div>
+            );
         }
-
-        return (
-            <div>
-                
-                <Navbar/>
-                <Wrap>
-                    <h2>{board.notice_title}</h2>
-                    <h6 align="right">조회수 {board.notice_views}</h6>
-                    <h4>{board.member}</h4>
-                    <h5 align="right">{board.created_at} </h5>
-                    <h5 align="right"> {localStorage.getItem('id')} </h5>
-                    {rendring()}
-                    <Button>
-                        <Link to="/notice">목록</Link>
-                        <Link to="/notice" onClick={(e) => {this.deleteRow(board.id, e); alert("삭제되었습니다.");} }>삭제</Link>
-                        <Link to={`/notice/modify/${board.id}`}>수정</Link>
-                    </Button>
-                </Wrap>
-
-            </div>
-        );
     }
 }
 
 
 const Wrap = styled.div`
+    margin: 10px 230px 10px 230px;
     padding:20px;
     h2 {
         padding-bottom:20px;

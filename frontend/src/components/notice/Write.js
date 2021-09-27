@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
-import Navbar from '../Navbar/Navbar';
 
 import axios from 'axios';
 import styled from 'styled-components';
@@ -12,8 +11,7 @@ class Write extends Component {
         this.state ={
             notice_title:'',
             notice_content:'',
-            member:'',
-            created_at:new Date()
+            member: '',
         };
     };
 
@@ -28,8 +26,7 @@ class Write extends Component {
         axios.post('http://ec2-52-78-154-227.ap-northeast-2.compute.amazonaws.com/api/notice', {
             notice_title: this.state.notice_title,
             notice_content: this.state.notice_content,
-            member: this.state.member,
-            created_at: this.state.created_at
+            member: localStorage.getItem('id'),
         }).then(function (response) {
             console.log(response);
         }).catch(function (error) {
@@ -44,8 +41,6 @@ class Write extends Component {
     render() {
         return(
             <div>
-                
-                <Navbar/>
                 <Wrap>
                     <h2>Write</h2>
                     <p>
@@ -67,6 +62,7 @@ class Write extends Component {
 
 const Wrap = styled.div`
     padding:20px;
+    margin: 10px 230px 10px 230px;
     input {
         width:100%;
         height:20px;
@@ -74,7 +70,7 @@ const Wrap = styled.div`
     }
     textarea {
         width: 100%;
-        height: 100px;
+        height: 400px;
         border: 1px solid #ccc;
     }
 `;
@@ -103,6 +99,6 @@ const Button = styled.div`
     & > button + a{
         margin-right:5px;
     }
-}`;
+`;
 
 export default Write;

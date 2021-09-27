@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import '../css/Register.css';
 
 import { postCheckId, postCheckNickname, postSignUp } from '../api/apiClient';
-import Navbar from './Navbar/Navbar';
 
 class Register extends Component {
     constructor() {
@@ -28,13 +27,13 @@ class Register extends Component {
     nicknameChange = (e) => {this.setState({member_nickname: e.target.value})};
 
     onClickSubmit = () => {
-        if (this.state.member_id != "" &&
-            this.state.member_pw != "" &&
-            this.state.member_name != "" &&
-            this.state.member_user_birth != "" &&
-            this.state.member_user_phone != "" &&
-            this.state.member_user_email != "" &&
-            this.state.member_nickname != "") {
+        if (this.state.member_id !== "" &&
+            this.state.member_pw !== "" &&
+            this.state.member_name !== "" &&
+            this.state.member_user_birth !== "" &&
+            this.state.member_user_phone !== "" &&
+            this.state.member_user_email !== "" &&
+            this.state.member_nickname !== "") {
                 postSignUp({
                     member_id: this.state.member_id,
                     member_pw: this.state.member_pw,
@@ -57,7 +56,7 @@ class Register extends Component {
     };
 
     onClickIdAvailable = () => {
-        if (this.state.member_id != "") {
+        if (this.state.member_id !== "") {
             postCheckId({
                 member_id: this.state.member_id
             }).then(function(res) {
@@ -76,7 +75,7 @@ class Register extends Component {
     };
 
     onClickNicknameAvailable = () => {
-        if (this.state.member_id != "") {
+        if (this.state.member_id !== "") {
             postCheckNickname({
                 member_nickname: this.state.member_nickname
             }).then(function(res) {
@@ -99,7 +98,6 @@ class Register extends Component {
 
         return(
             <div>
-                <Navbar/>
                 <div className="register-content">
                     <div className="register-form">
                         

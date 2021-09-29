@@ -9,9 +9,9 @@ class Login extends Component {
         super();
         this.state = {
             member_id: "",
-            member_pw: ""
-        };  
-    };
+            member_pw: "",
+        }
+    }
 
     idChange = (e) => {this.setState({member_id: e.target.value})};
     pwChange = (e) => {this.setState({member_pw: e.target.value})};
@@ -37,14 +37,14 @@ class Login extends Component {
                         alert("비밀번호가 틀렸습니다");
                     } else if (err.response.data.message === "Unexist ID") {
                         alert("존재하지 않는 아이디입니다");
-                    };
-                });
+                    }
+                })
             } else if (this.state.member_id === "") {
                 alert("아이디를 입력해주세요");
             } else if (this.state.member_pw === "") {
                 alert("비밀번호를 입력해주세요");
-            };
-    };
+            }
+    }
 
     render() {
         console.log(this.state);
@@ -66,7 +66,7 @@ class Login extends Component {
                         <button type="submit" className="btn btn-dark btn-lg btn-block" onClick={this.onClickLogin}>로그인</button>
                         <div className="bot">
                                 <Link className="bot-left" to="/register">회원가입</Link>
-                                <a className="bot-right" href="#forgot">아이디/비밀번호 찾기</a>
+                                <Link className="bot-right" href="#forgot">아이디/비밀번호 찾기</Link>
                         </div>
 
                     </div>

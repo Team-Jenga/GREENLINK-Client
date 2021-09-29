@@ -17,6 +17,7 @@ class Write extends Component {
             event_period_end:'',
             event_url:'',
             event_image_url:'',
+            event_preview_url:'',
             event_content:''
         };
     };
@@ -27,7 +28,18 @@ class Write extends Component {
     pStarteWrite = (e) => {this.setState({event_period_start: e.target.value})};
     pEndWrite = (e) => {this.setState({event_period_end: e.target.value})};
     urlWrite = (e) => {this.setState({event_url: e.target.value})};
-    imageUrlWrite = (e) => {this.setState({event_image_url: e.target.value})};
+    handleFile = (e) => {
+        e.preventDefault();
+        let reader = new FileReader();
+        let file = e.target.files[0];
+        reader.onloadend = () => {
+            this.setState({
+                event_image_url : file,
+                event_preview_url : reader.result
+            })
+        }
+        reader.readAsDataURL(file);
+    }
     contentWrite = (e) => {this.setState({event_content: e.target.value})};
 
     onClickSubmit = () => {
@@ -41,6 +53,7 @@ class Write extends Component {
                 event_period_end: this.state.event_period_end,
                 event_url: this.state.event_url,
                 event_image_url: this.state.event_image_url,
+                //event_preview_url: this.state.event_preview_url,
                 event_content: this.state.event_content,
             }).then(function (response) {
                 console.log(response);
@@ -54,34 +67,23 @@ class Write extends Component {
     };
 
     render() {
+        let image_preview = null;
+        if(this.state.event_image_url !== ''){
+            image_preview = <img className='image_preview' src={this.state.event_preview_url} alt="no Imgage"></img>
+        }
         return(
             <div>
                 <Wrap>
                     <h2>Write</h2>
-                    <p>
-                        <input type ="text" name="title" onChange={this.titleWrite}/>
-                    </p>
-                    <p>
-                        <input type ="text" name="location" onChange={this.locationWrite}/>
-                    </p>
-                    <p>
-                        <input type ="text" name="management" onChange={this.managementWrite}/>
-                    </p>
-                    <p>
-                        <input type ="date" name="pStart" onChange={this.pStarteWrite}/>
-                    </p>
-                    <p>
-                        <input type="date" name="pEnd" onChange={this.pEndWrite}/>
-                    </p>
-                    <p>
-                        <input type="text" name="url" onChange={this.urlWrite}/>
-                    </p>
-                    <p>
-                        <input type="text" name="imgaeUrl" onChange={this.imageUrlWrite}/>
-                    </p>
-                    <p>
-                        <textarea type="text" name="content" onChange={this.contentWrite}/>
-                    </p>
+                    <p><input type ="text" name="title" onChange={this.titleWrite}/></p>
+                    <p><input type ="text" name="location" onChange={this.locationWrite}/></p>
+                    <p><input type ="text" name="management" onChange={this.managementWrite}/></p>
+                    <p><input type ="date" name="pStart" onChange={this.pStarteWrite}/></p>
+                    <p><input type="date" name="pEnd" onChange={this.pEndWrite}/></p>
+                    <p><input type="text" name="url" onChange={this.urlWrite}/></p>
+                    <p><input type="file" name="imgaeUrl" accept="image/*" onChange={this.handleFile}/></p>
+                    {image_preview}
+                    <p><textarea type="text" name="content" onChange={this.contentWrite}/></p>
                     <Button>
                         <Link to="/campaign" onClick={() => {this.onClickSubmit()} }>작성</Link>
                         <Link to="/campaign">목록</Link>

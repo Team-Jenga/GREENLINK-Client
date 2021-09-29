@@ -4,7 +4,6 @@ import './App.css';
 import {BrowserRouter, Route, Switch} from "react-router-dom";
 import CarouselContainer from './components/Home';
 import About from './components/About';
-import Campaign from './components/Campaign';
 import Login from './components/Login';
 import MyPage from './components/MyPage';
 import Register from './components/Register';

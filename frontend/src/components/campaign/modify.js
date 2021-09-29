@@ -16,6 +16,7 @@ class Modify extends Component {
             event_period_end:'',
             event_url:'',
             event_image_url:'',
+            event_preview_url:'',
             event_content:''
         };
     };
@@ -26,14 +27,25 @@ class Modify extends Component {
     pStarteWrite = (e) => {this.setState({event_period_start: e.target.value})};
     pEndWrite = (e) => {this.setState({event_period_end: e.target.value})};
     urlWrite = (e) => {this.setState({event_url: e.target.value})};
-    imageUrlWrite = (e) => {this.setState({event_image_url: e.target.value})};
+    handleFile = (e) => {
+        e.preventDefault();
+        let reader = new FileReader();
+        let file = e.target.files[0];
+        reader.onloadend = () => {
+            this.setState({
+                event_image_url : file,
+                event_preview_url : reader.result
+            })
+        }
+        reader.readAsDataURL(file);
+    }
     contentWrite = (e) => {this.setState({event_content: e.target.value})};
 
     loadingData = async() => {
         try {
             const {id} = this.props.match.params;
             console.log(id)
-            const response = await axios.get(`http://ec2-52-78-154-227.ap-northeast-2.compute.amazonaws.com/api//${id}`);
+            const response = await axios.get(`http://ec2-52-78-154-227.ap-northeast-2.compute.amazonaws.com/api/modify_event/${id}`);
             this.setState({
                 member_id: id,
                 event_title: response.event_title,
@@ -43,6 +55,7 @@ class Modify extends Component {
                 event_period_end: response.event_period_end,
                 event_url: response.event_url,
                 event_image_url: response.event_image_url,
+                //event_preview_url: response.event_image_url,
                 event_content: response.event_content,
             });
         } catch(e) {
@@ -61,6 +74,7 @@ class Modify extends Component {
             event_period_end: this.state.event_period_end,
             event_url: this.state.event_url,
             event_image_url: this.state.event_image_url,
+            //event_preview_url: this.state.event_image_url,
             event_content: this.state.event_content,
         }).then(function (response) {
             console.log(response);
@@ -78,6 +92,10 @@ class Modify extends Component {
     };
 
     render() {
+        let image_preview = null;
+        if(this.state.event_image_url !== ''){
+            image_preview = <img className='image_preview' src={this.state.event_preview_url} alt="no Imgage"></img>
+        }
         return (
             <div>
                 <Wrap>
@@ -87,7 +105,8 @@ class Modify extends Component {
                     <p><input type ="date" name="pStart" onChange={this.pStarteWrite} defaultValue={this.state.event_period_start}/></p>
                     <p><input type="date" name="pEnd" onChange={this.pEndWrite} defaultValue={this.state.event_period_end}/></p>
                     <p><input type="text" name="url" onChange={this.urlWrite} defaultValue={this.state.event_url}/></p>
-                    <p><input type="text" name="imgaeUrl" onChange={this.imageUrlWrite} defaultValue={this.state.event_image_url}/></p>
+                    <p><input type="file" name="imgaeUrl" accept="image/*" onChange={this.handleFile}/></p>
+                    {image_preview}
                     <p><textarea type="text" name="content" onChange={this.contentWrite} defaultValue={this.state.event_content}/></p>
                     <Button>
                         <Link to="/campaign" onClick={() => {this.onClickSubmit()}}>수정</Link>

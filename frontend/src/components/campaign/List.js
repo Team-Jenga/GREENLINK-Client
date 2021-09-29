@@ -24,29 +24,32 @@ class List extends Component {
 
     render() { 
         const { events } = this.state; 
-
         if (localStorage.getItem("auth") === "admin") {
             return (
-                <div>
-                    <Wrap> 
+                    <Wrap>
+                        <div>
                         <h2><b>캠페인</b></h2>
-                        {events.map((item)=> {
-                            return (
-                                <ListItem key = {item.event_id}>
-                                    <Link to={`/campaign/read/${item.event_id}`}>
-                                        <h3>{item.event_title}</h3>
-                                        <p>{item.event_location}</p>
-                                        <p>{item.event_reporting_date}</p>
-                                    </Link>
-                                </ListItem>
-                            )
-                        })}
                         <Button>
                             <Link to="/campaign/write">캠페인 쓰기</Link>
                         </Button>
+                        </div>
+                        <br/>
+                        <br/>
+                        {events.map((item)=> {
+                            return (
+                                <ListItem className= "campaign-item" key = {item.event_id}>
+                                <Link to={`/campaign/read/${item.event_id}`}>
+                                    <div class='campaign-info'>
+                                        <div class="campaign-cover"></div>
+                                        <h4 className= "campaign-title">{item.event_title}</h4>
+                                        <p className= "campaign-date">{item.event_location}</p>
+                                        <p className= "campaign-date">{item.event_reporting_date}</p>
+                                    </div>
+                                </Link>
+                            </ListItem>
+                            )
+                        })}
                     </Wrap>
-
-                </div>
             );
         }
         else {
@@ -56,17 +59,19 @@ class List extends Component {
                         <h2><b>캠페인</b></h2>
                         {events.map((item)=> {
                             return (
-                                <ListItem key = {item.event_id}>
-                                    <Link to={`/campaign/read/${item.event_id}`}>
-                                        <h3>{item.event_title}</h3>
-                                        <p>{item.event_location}</p>
-                                        <p>{item.event_reporting_date}</p>
-                                    </Link>
-                                </ListItem>
+                                    <ListItem className= "campaign-item" key = {item.event_id}>
+                                        <Link to={`/campaign/read/${item.event_id}`}>
+                                            <div class='campaign-info'>
+                                                <div class="campaign-cover"></div>
+                                                <h4 className= "campaign-title">{item.event_title}</h4>
+                                                <p className= "campaign-date">{item.event_location}</p>
+                                                <p className= "campaign-date">{item.event_reporting_date}</p>
+                                            </div>
+                                        </Link>
+                                    </ListItem>
                             )
                         })}
                     </Wrap>
-
                 </div>
             );
         }
@@ -76,19 +81,25 @@ class List extends Component {
 const Wrap = styled.div`
     padding:20px;
     margin: 10px 230px 10px 230px;
+    h2 {
+        display:inline-block;
+        float:left
+    }
 `;
 
 const ListItem = styled.div`
-    width:100%;
+    width:23%;
     margin-top:10px;
     padding:20px;
+    float: left;
     border-top: 1px solid #eee;
     a{
         text-decoration:none;
     }
-    h3{
+    h4{
         margin:0;
         padding: 0;
+        overflow: hidden;
         color:#212121;
     }
     p {
@@ -101,14 +112,38 @@ const ListItem = styled.div`
             color:#0066ff;
         }
     }
+
+    .campaign-item {
+        width: 100%;
+    }
+
+    .campaign-cover {
+    width: 100%;
+    height: 260px;
+    background-image: url("https://cdnimg.melon.co.kr/cm/album/images/100/16/426/10016426_org.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    }
+    
+    .campaign-info {
+    padding: 10px;
+    }
+    
+    .campaign-title {
+    font-family: "Noto Sans KR", sans-serif;
+    }
+    
+    .campaign-date {
+    font-size: 12px;
+    }
 }
 `;
 
 const Button = styled.div`
     border-top: 1px solid #eee;
-    padding:20px;
     a{
-        float:right;
+        float: right;
         padding: 10px 20px;
         border-radius: 5px;
         text-decoration:none;

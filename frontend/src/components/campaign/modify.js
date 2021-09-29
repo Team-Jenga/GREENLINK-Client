@@ -45,9 +45,9 @@ class Modify extends Component {
         try {
             const {id} = this.props.match.params;
             console.log(id)
-            const response = await axios.get(`http://ec2-52-78-154-227.ap-northeast-2.compute.amazonaws.com/api/modify_event/${id}`);
+            const response = await axios.get(`http://ec2-52-78-154-227.ap-northeast-2.compute.amazonaws.com/api/event/${id}`);
             this.setState({
-                member_id: id,
+                member: id,
                 event_title: response.event_title,
                 event_location: response.event_location,
                 event_management: response.event_management,
@@ -65,8 +65,8 @@ class Modify extends Component {
 
     onClickSubmit = () => {
         if (this.state.notice_title !== "" && this.state.notice_content !== "") {
-        axios.put(`http://ec2-52-78-154-227.ap-northeast-2.compute.amazonaws.com/api/modify_event/${this.state.id}`, {
-            member_id: localStorage.getItem('id'),
+        axios.put(`http://ec2-52-78-154-227.ap-northeast-2.compute.amazonaws.com/api/event/${this.state.id}`, {
+            member: localStorage.getItem('id'),
             event_title: this.state.event_title,
             event_location: this.state.event_location,
             event_management: this.state.event_management,
@@ -94,20 +94,20 @@ class Modify extends Component {
     render() {
         let image_preview = null;
         if(this.state.event_image_url !== ''){
-            image_preview = <img className='image_preview' src={this.state.event_preview_url} alt="no Imgage"></img>
+            image_preview = <img className='image_preview' src={this.state.event_preview_url} width="100px" height="100px" alt="no Imgage"></img>
         }
         return (
             <div>
                 <Wrap>
-                    <p><input type ="text" name="title" onChange={this.titleWrite} defaultValue={this.state.event_title}/></p>
-                    <p><input type ="text" name="location" onChange={this.locationWrite} defaultValue={this.state.event_location}/></p>
-                    <p><input type ="text" name="management" onChange={this.managementWrite} defaultValue={this.state.event_management}/></p>
-                    <p><input type ="date" name="pStart" onChange={this.pStarteWrite} defaultValue={this.state.event_period_start}/></p>
-                    <p><input type="date" name="pEnd" onChange={this.pEndWrite} defaultValue={this.state.event_period_end}/></p>
-                    <p><input type="text" name="url" onChange={this.urlWrite} defaultValue={this.state.event_url}/></p>
-                    <p><input type="file" name="imgaeUrl" accept="image/*" onChange={this.handleFile}/></p>
+                    <p>제목 : <input type ="text" name="title" onChange={this.titleWrite} defaultValue={this.state.event_title}/></p>
+                    <p>장소 : <input type ="text" name="location" onChange={this.locationWrite} defaultValue={this.state.event_location}/></p>
+                    <p>주최 : <input type ="text" name="management" onChange={this.managementWrite} defaultValue={this.state.event_management}/></p>
+                    <p>시작 일시 : <input type ="date" name="pStart" onChange={this.pStarteWrite} defaultValue={this.state.event_period_start}/></p>
+                    <p>종료 일시 : <input type="date" name="pEnd" onChange={this.pEndWrite} defaultValue={this.state.event_period_end}/></p>
+                    <p>캠페인 주소 : <input type="text" name="url" onChange={this.urlWrite} defaultValue={this.state.event_url}/></p>
+                    <p>캠페인 포스터 : <input type="file" name="imgaeUrl" accept="image/*" onChange={this.handleFile}/></p>
                     {image_preview}
-                    <p><textarea type="text" name="content" onChange={this.contentWrite} defaultValue={this.state.event_content}/></p>
+                    <p>본문 : <textarea type="text" name="content" onChange={this.contentWrite} defaultValue={this.state.event_content}/></p>
                     <Button>
                         <Link to="/campaign" onClick={() => {this.onClickSubmit()}}>수정</Link>
                     </Button>

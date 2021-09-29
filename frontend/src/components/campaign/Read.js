@@ -21,7 +21,7 @@ class Read extends Component {
             this.setState({
                 event:response.data,
             });
-            console.log(response.data);
+            console.log(this.state.event);
         } catch(e) {
             console.log(e);
         }
@@ -51,7 +51,7 @@ class Read extends Component {
             return (
                 <div>
                     <Wrap>
-                        <h2>{event.event}</h2>
+                        <h2>{event.event_content}</h2>
                         <h5 align="right">{event.event_period_start} </h5>
                         <h5 align="right">{event.event_period_end} </h5>
                         <h6 align="right"> 작성자 : {event.member} </h6>
@@ -64,8 +64,8 @@ class Read extends Component {
                         </p>
                         <Button>
                             <Link to="/campaign">목록</Link>
-                            <Link to="/campaign" onClick={(e) => {this.deleteRow(event.id, e); alert("삭제되었습니다.");} }>삭제</Link>
-                            <Link to={`/campaign/modify/${event.id}`}>수정</Link>
+                            <Link to="/campaign" onClick={(e) => {this.deleteRow(event.event_id, e); alert("삭제되었습니다.");} }>삭제</Link>
+                            <Link to={`/campaign/modify/${event.event_id}`}>수정</Link>
                         </Button>
                     </Wrap>
 
@@ -76,7 +76,7 @@ class Read extends Component {
             return (
                 <div>
                     <Wrap>
-                        <h2>{event.event}</h2>
+                        <h2>{event.event_content}</h2>
                         <h5 align="right">{event.event_period_start} </h5>
                         <h5 align="right">{event.event_period_end} </h5>
                         <h6 align="right"> 작성자 : {event.member} </h6>

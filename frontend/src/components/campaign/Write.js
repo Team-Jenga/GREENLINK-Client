@@ -9,7 +9,7 @@ class Write extends Component {
     constructor() {
         super();
         this.state ={
-            member_id:'',
+            member:'',
             event_title:'',
             event_location:'',
             event_management:'',
@@ -32,6 +32,7 @@ class Write extends Component {
         e.preventDefault();
         let reader = new FileReader();
         let file = e.target.files[0];
+        console.log(file)
         reader.onloadend = () => {
             this.setState({
                 event_image_url : file,
@@ -44,8 +45,8 @@ class Write extends Component {
 
     onClickSubmit = () => {
         if (this.state.event_title !== "" && this.state.event_location !== "" && this.state.event_management !== "" &&this.state.event_period_start !== "" &&this.state.event_period_end !== "" &&this.state.event_url !== "" &&this.state.event_image_url !== "" &&this.state.event_content !== "") {
-            axios.post('http://ec2-52-78-154-227.ap-northeast-2.compute.amazonaws.com/api/create_event', {
-                member_id: localStorage.getItem('id'),
+            axios.post('http://ec2-52-78-154-227.ap-northeast-2.compute.amazonaws.com/api/event', {
+                member: localStorage.getItem('id'),
                 event_title: this.state.event_title,
                 event_location: this.state.event_location,
                 event_management: this.state.event_management,
@@ -69,21 +70,21 @@ class Write extends Component {
     render() {
         let image_preview = null;
         if(this.state.event_image_url !== ''){
-            image_preview = <img className='image_preview' src={this.state.event_preview_url} alt="no Imgage"></img>
+            image_preview = <img className='image_preview' src={this.state.event_preview_url} width="300px" height="300px" alt="no Imgage"></img>
         }
         return(
             <div>
                 <Wrap>
                     <h2>Write</h2>
-                    <p><input type ="text" name="title" onChange={this.titleWrite}/></p>
-                    <p><input type ="text" name="location" onChange={this.locationWrite}/></p>
-                    <p><input type ="text" name="management" onChange={this.managementWrite}/></p>
-                    <p><input type ="date" name="pStart" onChange={this.pStarteWrite}/></p>
-                    <p><input type="date" name="pEnd" onChange={this.pEndWrite}/></p>
-                    <p><input type="text" name="url" onChange={this.urlWrite}/></p>
-                    <p><input type="file" name="imgaeUrl" accept="image/*" onChange={this.handleFile}/></p>
+                    <p>제목 : <input type ="text" name="title" onChange={this.titleWrite}/></p>
+                    <p>장소 : <input type ="text" name="location" onChange={this.locationWrite}/></p>
+                    <p>주최 : <input type ="text" name="management" onChange={this.managementWrite}/></p>
+                    <p>시작 일시 : <input type ="date" name="pStart" onChange={this.pStarteWrite}/></p>
+                    <p>종료 일시 : <input type="date" name="pEnd" onChange={this.pEndWrite}/></p>
+                    <p>캠페인 주소 : <input type="text" name="url" onChange={this.urlWrite}/></p>
+                    <p>캠페인 포스터 : <input type="file" name="imgaeUrl" accept="image/*" onChange={this.handleFile}/></p>
                     {image_preview}
-                    <p><textarea type="text" name="content" onChange={this.contentWrite}/></p>
+                    <p>본문 : <textarea type="text" name="content" onChange={this.contentWrite}/></p>
                     <Button>
                         <Link to="/campaign" onClick={() => {this.onClickSubmit()} }>작성</Link>
                         <Link to="/campaign">목록</Link>

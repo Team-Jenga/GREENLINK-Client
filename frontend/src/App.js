@@ -38,7 +38,7 @@ class App extends Component {
             <Route exact path="/notice/write" component={Write} />
             <Route exact path="/notice/modify/:id?" component={Modify} />
 
-            <Route exact path="/campagin" component={cList} />
+            <Route exact path="/campaign" component={cList} />
             <Route exact path="/campaign/read/:id?" component={cRead} />     
             <Route exact path="/campaign/write" component={cWrite} />
             <Route exact path="/campaign/modify/:id?" component={cModify} />

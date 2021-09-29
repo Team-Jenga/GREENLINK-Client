@@ -40,7 +40,14 @@ class List extends Component {
                                 <ListItem className= "campaign-item" key = {item.event_id}>
                                 <Link to={`/campaign/read/${item.event_id}`}>
                                     <div class='campaign-info'>
-                                        <div class="campaign-cover"></div>
+                                        <div style = {{ 
+                                            backgroundImage: `url("https://s3-greenlink.s3.ap-northeast-2.amazonaws.com/%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7(50).png")`,
+                                            width:'100%',
+                                            height:'260px',
+                                            backgroundSize: 'cover', 
+                                            backgroundPosition: 'center',
+                                            backgroundRepeat: 'no-repeat',
+                                        }}></div>
                                         <h4 className= "campaign-title">{item.event_title}</h4>
                                         <p className= "campaign-date">{item.event_location}</p>
                                         <p className= "campaign-date">{item.event_reporting_date}</p>
@@ -62,7 +69,14 @@ class List extends Component {
                                     <ListItem className= "campaign-item" key = {item.event_id}>
                                         <Link to={`/campaign/read/${item.event_id}`}>
                                             <div class='campaign-info'>
-                                                <div class="campaign-cover"></div>
+                                                <div style = {{ 
+                                                    backgroundImage: `url("https://s3-greenlink.s3.ap-northeast-2.amazonaws.com/%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7(50).png")`,
+                                                    width:'100%',
+                                                    height:'260px',
+                                                    backgroundSize: 'cover', 
+                                                    backgroundPosition: 'center',
+                                                    backgroundRepeat: 'no-repeat',
+                                                }}></div>
                                                 <h4 className= "campaign-title">{item.event_title}</h4>
                                                 <p className= "campaign-date">{item.event_location}</p>
                                                 <p className= "campaign-date">{item.event_reporting_date}</p>
@@ -115,15 +129,6 @@ const ListItem = styled.div`
 
     .campaign-item {
         width: 100%;
-    }
-
-    .campaign-cover {
-    width: 100%;
-    height: 260px;
-    background-image: url("https://cdnimg.melon.co.kr/cm/album/images/100/16/426/10016426_org.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
     }
     
     .campaign-info {

@@ -53,7 +53,7 @@ class Write extends Component {
                 event_period_start: this.state.event_period_start,
                 event_period_end: this.state.event_period_end,
                 event_url: this.state.event_url,
-                event_image_url: this.state.event_image_url,
+                event_image_url: "https://s3-greenlink.s3.ap-northeast-2.amazonaws.com/%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7(50).png",
                 //event_preview_url: this.state.event_preview_url,
                 event_content: this.state.event_content,
             }).then(function (response) {

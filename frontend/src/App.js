@@ -30,7 +30,6 @@ class App extends Component {
           <Switch>
             <Route exact path="/" component={CarouselContainer} />
             <Route exact path="/about" component={About} />
-            <Route exact path="/campaign" component={Campaign} />
             <Route exact path="/mypage" component={MyPage} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/register" component={Register} />

@@ -8,26 +8,42 @@ class Modify extends Component {
     constructor() {
         super();
         this.state ={
-            id:'',
-            notice_title:'',
-            notice_content:'',
-            member:'',
-            created_at:'',
+            member_id:'',
+            event_title:'',
+            event_location:'',
+            event_management:'',
+            event_period_start:'',
+            event_period_end:'',
+            event_url:'',
+            event_image_url:'',
+            event_content:''
         };
     };
     
-    titleWrite = (e) => {this.setState({notice_title: e.target.value})};
-    contentWrite = (e) => {this.setState({notice_content: e.target.value})};
+    titleWrite = (e) => {this.setState({event_title: e.target.value})};
+    locationWrite = (e) => {this.setState({event_location: e.target.value})};
+    managementWrite = (e) => {this.setState({event_management: e.target.value})};
+    pStarteWrite = (e) => {this.setState({event_period_start: e.target.value})};
+    pEndWrite = (e) => {this.setState({event_period_end: e.target.value})};
+    urlWrite = (e) => {this.setState({event_url: e.target.value})};
+    imageUrlWrite = (e) => {this.setState({event_image_url: e.target.value})};
+    contentWrite = (e) => {this.setState({event_content: e.target.value})};
 
     loadingData = async() => {
         try {
             const {id} = this.props.match.params;
             console.log(id)
-            const response = await axios.get(`http://ec2-52-78-154-227.ap-northeast-2.compute.amazonaws.com/api/notice/${id}`);
+            const response = await axios.get(`http://ec2-52-78-154-227.ap-northeast-2.compute.amazonaws.com/api//${id}`);
             this.setState({
-                id:id,
-                notice_title:response.data.notice_title,
-                notice_content:response.data.notice_content,
+                member_id: id,
+                event_title: response.event_title,
+                event_location: response.event_location,
+                event_management: response.event_management,
+                event_period_start: response.event_period_start,
+                event_period_end: response.event_period_end,
+                event_url: response.event_url,
+                event_image_url: response.event_image_url,
+                event_content: response.event_content,
             });
         } catch(e) {
             console.log(e);
@@ -36,9 +52,16 @@ class Modify extends Component {
 
     onClickSubmit = () => {
         if (this.state.notice_title !== "" && this.state.notice_content !== "") {
-        axios.put(`http://ec2-52-78-154-227.ap-northeast-2.compute.amazonaws.com/api/notice/${this.state.id}`, {
-            notice_title: this.state.notice_title,
-            notice_content: this.state.notice_content,
+        axios.put(`http://ec2-52-78-154-227.ap-northeast-2.compute.amazonaws.com/api/modify_event/${this.state.id}`, {
+            member_id: localStorage.getItem('id'),
+            event_title: this.state.event_title,
+            event_location: this.state.event_location,
+            event_management: this.state.event_management,
+            event_period_start: this.state.event_period_start,
+            event_period_end: this.state.event_period_end,
+            event_url: this.state.event_url,
+            event_image_url: this.state.event_image_url,
+            event_content: this.state.event_content,
         }).then(function (response) {
             console.log(response);
         }).catch(function (error) {
@@ -58,11 +81,16 @@ class Modify extends Component {
         return (
             <div>
                 <Wrap>
-                    <h2><input type="text" name="title" onChange={this.titleWrite} defaultValue={this.state.notice_title}></input></h2>
-                    <p><textarea type="text" name="content" onChange={this.contentWrite} defaultValue={this.state.notice_content}></textarea></p>
-                    <h5 align="right"> {this.state.created_at} </h5>
+                    <p><input type ="text" name="title" onChange={this.titleWrite} defaultValue={this.state.event_title}/></p>
+                    <p><input type ="text" name="location" onChange={this.locationWrite} defaultValue={this.state.event_location}/></p>
+                    <p><input type ="text" name="management" onChange={this.managementWrite} defaultValue={this.state.event_management}/></p>
+                    <p><input type ="date" name="pStart" onChange={this.pStarteWrite} defaultValue={this.state.event_period_start}/></p>
+                    <p><input type="date" name="pEnd" onChange={this.pEndWrite} defaultValue={this.state.event_period_end}/></p>
+                    <p><input type="text" name="url" onChange={this.urlWrite} defaultValue={this.state.event_url}/></p>
+                    <p><input type="text" name="imgaeUrl" onChange={this.imageUrlWrite} defaultValue={this.state.event_image_url}/></p>
+                    <p><textarea type="text" name="content" onChange={this.contentWrite} defaultValue={this.state.event_content}/></p>
                     <Button>
-                        <Link to="/notice" onClick={() => {this.onClickSubmit()}}>수정</Link>
+                        <Link to="/campaign" onClick={() => {this.onClickSubmit()}}>수정</Link>
                     </Button>
                 </Wrap>
             </div>

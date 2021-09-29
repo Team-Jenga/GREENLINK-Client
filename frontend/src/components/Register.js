@@ -18,7 +18,9 @@ class Register extends Component {
             input_num: "",
             auth_num: "",
             auth_num_sending: false,
-            email_confirmed: false
+            email_confirmed: false,
+            id_available: false,
+            nickname_available: false
         }
     }
 
@@ -35,15 +37,16 @@ class Register extends Component {
         if (this.state.member_id !== "") {
             postCheckId({
                 member_id: this.state.member_id
-            }).then(function(res) {
+            }).then((res) => {
                 console.log(res)
                 if (res.data.message === "true") {
+                    this.setState({id_available: true});
                     alert("사용 가능한 아이디입니다");
                 } else {
                     alert("이미 존재하는 아이디입니다");
                 };
-            }).catch(function(err) {
-                console.log(err.response);
+            }).catch((err) => {
+                console.log(err);
             })
         } else {
             alert("아이디를 입력하세요");
@@ -51,18 +54,19 @@ class Register extends Component {
     }
     
     onClickNicknameAvailable = () => {
-        if (this.state.member_id !== "") {
+        if (this.state.member_nickname !== "") {
             postCheckNickname({
                 member_nickname: this.state.member_nickname
-            }).then(function(res) {
+            }).then((res) => {
                 console.log(res)
                 if (res.data.message === "true") {
+                    this.setState({nickname_available: true});
                     alert("사용 가능한 닉네임입니다");
                 } else {
                     alert("이미 존재하는 닉네임입니다");
                 };
-            }).catch(function(err) {
-                console.log(err.response);
+            }).catch((err) => {
+                console.log(err);
             })
         } else {
             alert("닉네임을 입력하세요");
@@ -107,7 +111,8 @@ class Register extends Component {
             this.state.user_phone !== "" &&
             this.state.user_email !== "" &&
             this.state.member_nickname !== "" &&
-            this.state.input_num !== "" &&
+            this.state.id_available &&
+            this.state.nickname_available &&
             this.state.email_confirmed) {
                 postSignUp({
                     member_id: this.state.member_id,
@@ -118,22 +123,34 @@ class Register extends Component {
                     member_user_email: this.state.user_email,
                     member_nickname: this.state.member_nickname,
                     member_auth: this.state.member_auth
-                }).then(function (res) {
+                }).then((res) => {
                     console.log(res)
                     alert("회원가입이 완료되었습니다");
                     document.location.href = "/login";
-                }).catch(function(err) {
-                    console.log(err.response);
+                }).catch((err) => {
+                    console.log(err);
                 });
-            } else if (!this.state.email_confirmed) {
-                alert("이메일 인증을 완료해주세요");
-            } 
-            else {
-                alert("정보를 모두 입력해주세요");
+            } else {
+                if (this.state.member_id === "" ||
+                    this.state.member_pw === "" ||
+                    this.state.member_name === "" ||
+                    this.state.user_birth === "" ||
+                    this.state.user_phone === "" ||
+                    this.state.user_email === "" ||
+                    this.state.member_nickname === "") {
+                        alert("정보를 모두 입력해주세요");
+                    } else if (!this.state.id_available) {
+                        alert("아이디 중복을 확인해주세요");
+                    } else if (!this.state.nickname_available) {
+                        alert("닉네임 중복을 확인해주세요");
+                    } else if (!this.state.email_confirmed) {
+                        alert("이메일 인증을 완료해주세요");
+                    }
             }
     }
 
     render() {
+        console.log(this.state);
         return(
             <div>
                 <div className="register-content">

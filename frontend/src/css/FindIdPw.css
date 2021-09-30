@@ -1,0 +1,42 @@
+.find-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 100px;
+    margin-bottom: 300px;
+}
+
+.find-form {
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.find-form .form-group {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 75%;
+    margin-top: 25px;
+}
+
+.find-form .form-group label {
+    margin-bottom: 10px;
+}
+
+.find-id-show {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15px;
+}
+
+.find-form .btn {
+    width: 30%;
+    margin-top: 10px;
+}

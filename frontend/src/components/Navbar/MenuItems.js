@@ -52,7 +52,7 @@ export const MenuItems2 = [
 
     {
         id : 4,
-        title: 'My Page',
+        title: '마이페이지',
         url: '/mypage',
         cName: 'my-nav-link'
     },

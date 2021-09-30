@@ -1,0 +1,35 @@
+.modify-content {
+    width: 100%;
+    min-width: 1200px;
+    margin-top: 30px;
+    margin-bottom: 200px;
+}
+
+.modify-area {
+    max-width: 1200px;
+    margin: auto;
+}
+
+.modify-area.top {
+    width: 1000px;
+    border-bottom: 1px solid rgb(185, 185, 185);
+    padding-bottom: 30px;
+}
+
+.modify-area.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+
+.modify-area .form-group {
+    width: 40%;
+    margin-top: 15px;
+}
+
+#modify {
+    margin-top: 20px;
+}

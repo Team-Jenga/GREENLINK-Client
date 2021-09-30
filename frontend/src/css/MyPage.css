@@ -1,0 +1,41 @@
+.mypage-content {
+    width: 100%;
+    min-width: 1200px;
+    margin-top: 30px;
+    margin-bottom: 200px;
+}
+
+.mypage-area {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.mypage-area.top {
+    width: 1000px;
+    border-bottom: 1px solid rgb(185, 185, 185);
+    padding-bottom: 20px;
+}
+
+.mypage-area .user-info {
+    margin-top: 40px;
+}
+
+.mypage-area .user-info div {
+    margin: 10px;
+}
+
+.mypage-area .bookmark-campaign {
+    margin-top: 40px;
+}
+
+#pw-modify {
+    margin: 10px;
+}
+
+#info-modify {
+    margin: 10px;
+}

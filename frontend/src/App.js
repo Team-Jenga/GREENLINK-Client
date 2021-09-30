@@ -5,7 +5,8 @@ import {BrowserRouter, Route, Switch} from "react-router-dom";
 import CarouselContainer from './components/Home';
 import About from './components/About';
 import Campaign from './components/Campaign';
-import MyPage from './components/MyPage';
+import MyPage from './components/MyPage/MyPage';
+import MyInfoModify from './components/MyPage/MyInfoModify';
 import Login from './components/Login';
 import Register from './components/Register';
 import FindIdPw from './components/FindIdPw';
@@ -28,6 +29,7 @@ class App extends Component {
             <Route exact path="/campaign" component={Campaign} />
             <Route exact path="/notice" component={List} />
             <Route exact path="/mypage" component={MyPage} />
+            <Route exact path="/mypage/modify" component={MyInfoModify} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/register" component={Register} />
             <Route exact path="/findidpw" component={FindIdPw} />

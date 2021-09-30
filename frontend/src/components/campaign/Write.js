@@ -3,7 +3,21 @@ import {Link} from 'react-router-dom';
 
 import axios from 'axios';
 import styled from 'styled-components';
+import AWS from 'aws-sdk'
 
+const S3_BUCKET = process.env.REACT_APP_BUCKET_NAME;
+const REGION = process.env.REACT_APP_REGION;
+
+
+AWS.config.update({
+    accessKeyId: process.env.REACT_APP_ACCESS_KEY,
+    secretAccessKey: process.env.REACT_APP_SECRET_KEY
+})
+
+const myBucket = new AWS.S3({
+    params: { Bucket: S3_BUCKET},
+    region: REGION,
+})
 
 class Write extends Component {
     constructor() {
@@ -18,7 +32,10 @@ class Write extends Component {
             event_url:'',
             event_image_url:'',
             event_preview_url:'',
-            event_content:''
+            event_content:'',
+
+            progress:'',
+            selectedFile:''
         };
     };
 
@@ -32,16 +49,36 @@ class Write extends Component {
         e.preventDefault();
         let reader = new FileReader();
         let file = e.target.files[0];
-        console.log(file)
+        this.setState({
+            event_image_url : `https://s3-greenlink.s3.ap-northeast-2.amazonaws.com/${file.name}`,
+            selectedFile : file
+        })
         reader.onloadend = () => {
             this.setState({
-                event_image_url : file,
                 event_preview_url : reader.result
             })
-        }
+        };
+        console.log(this.state.event_image_url);
+        console.log(this.state.event_preview_url);
         reader.readAsDataURL(file);
     }
     contentWrite = (e) => {this.setState({event_content: e.target.value})};
+
+    uploadFile = (file) => {
+        const params = {
+            ACL: 'public-read',
+            Body: file,
+            Bucket: S3_BUCKET,
+            Key: file.name
+        };
+        myBucket.putObject(params)
+            .on('httpUploadProgress', (evt) => {
+                this.setState({progress :Math.round((evt.loaded / evt.total) * 100)})
+            })
+            .send((err) => {
+                if (err) console.log(err)
+            })
+    }
 
     onClickSubmit = () => {
         if (this.state.event_title !== "" && this.state.event_location !== "" && this.state.event_management !== "" &&this.state.event_period_start !== "" &&this.state.event_period_end !== "" &&this.state.event_url !== "" &&this.state.event_image_url !== "" &&this.state.event_content !== "") {
@@ -53,7 +90,7 @@ class Write extends Component {
                 event_period_start: this.state.event_period_start,
                 event_period_end: this.state.event_period_end,
                 event_url: this.state.event_url,
-                event_image_url: "https://s3-greenlink.s3.ap-northeast-2.amazonaws.com/%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7(50).png",
+                event_image_url: this.state.event_image_url,
                 //event_preview_url: this.state.event_preview_url,
                 event_content: this.state.event_content,
             }).then(function (response) {
@@ -71,6 +108,7 @@ class Write extends Component {
         let image_preview = null;
         if(this.state.event_image_url !== ''){
             image_preview = <img className='image_preview' src={this.state.event_preview_url} width="300px" height="300px" alt="no Imgage"></img>
+            console.log(this.state.event_image_url)
         }
         return(
             <div>
@@ -86,7 +124,7 @@ class Write extends Component {
                     {image_preview}
                     <p>본문 : <textarea type="text" name="content" onChange={this.contentWrite}/></p>
                     <Button>
-                        <Link to="/campaign" onClick={() => {this.onClickSubmit()} }>작성</Link>
+                        <Link to="/campaign" onClick={() => {this.onClickSubmit(); this.uploadFile(this.state.selectedFile)} }>작성</Link>
                         <Link to="/campaign">목록</Link>
                     </Button>
                 </Wrap>

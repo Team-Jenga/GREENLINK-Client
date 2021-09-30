@@ -41,7 +41,7 @@ class List extends Component {
                                 <Link to={`/campaign/read/${item.event_id}`}>
                                     <div class='campaign-info'>
                                         <div style = {{ 
-                                            backgroundImage: `url("https://s3-greenlink.s3.ap-northeast-2.amazonaws.com/%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7(50).png")`,
+                                            backgroundImage: `url(${item.event_image_url})`,
                                             width:'100%',
                                             height:'260px',
                                             backgroundSize: 'cover', 
@@ -70,7 +70,7 @@ class List extends Component {
                                         <Link to={`/campaign/read/${item.event_id}`}>
                                             <div class='campaign-info'>
                                                 <div style = {{ 
-                                                    backgroundImage: `url("https://s3-greenlink.s3.ap-northeast-2.amazonaws.com/%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7(50).png")`,
+                                                    backgroundImage: `url(${item.event_image_url})`,
                                                     width:'100%',
                                                     height:'260px',
                                                     backgroundSize: 'cover', 

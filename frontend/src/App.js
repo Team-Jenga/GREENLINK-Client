@@ -42,6 +42,7 @@ class App extends Component {
             <Route exact path="/campaign/read/:id?" component={cRead} />     
             <Route exact path="/campaign/write" component={cWrite} />
             <Route exact path="/campaign/modify/:id?" component={cModify} />
+            
           </Switch>
         </div>
       </BrowserRouter>

@@ -168,9 +168,11 @@ class Register extends Component {
 
                         <div className="form-group">
                             <label>아이디</label>
-                            <input type="text" className="form-control" placeholder="아이디" onChange={this.idChange} />
-                            <button type="submit" className="btn btn-dark btn-sm btn-block" 
-                            onClick={this.onClickIdAvailable}>중복확인</button>
+                            <div className="form-group-field">
+                                <input type="text" className="form-control" placeholder="아이디" onChange={this.idChange} />
+                                <button type="submit" className="btn btn-dark btn-sm btn-block" 
+                                onClick={this.onClickIdAvailable}>중복확인</button>
+                            </div>
                         </div>
 
                         <div className="form-group">
@@ -180,9 +182,11 @@ class Register extends Component {
 
                         <div className="form-group">
                             <label>닉네임</label>
-                            <input type="text" className="form-control" placeholder="닉네임" onChange={this.nicknameChange}/>
-                            <button type="submit" className="btn btn-dark btn-sm btn-block" 
-                            onClick={this.onClickNicknameAvailable}>중복확인</button>
+                            <div className="form-group-field">
+                                <input type="text" className="form-control" placeholder="닉네임" onChange={this.nicknameChange}/>
+                                <button type="submit" className="btn btn-dark btn-sm btn-block" 
+                                onClick={this.onClickNicknameAvailable}>중복확인</button>
+                            </div>
                         </div>
 
                         <div className="form-group">
@@ -192,20 +196,24 @@ class Register extends Component {
 
                         <div className="form-group">
                             <label>이메일</label>
-                            <input type="email" className="form-control" placeholder="이메일" onChange={this.emailChange}/>
-                            <button type="submit" className="btn btn-dark btn-sm btn-block" 
-                            onClick={this.onClickSendAuthNum}>인증번호 전송</button>
+                            <div className="form-group-field">
+                                <input type="email" className="form-control" placeholder="이메일" onChange={this.emailChange}/>
+                                <button type="submit" className="btn btn-dark btn-sm btn-block" 
+                                onClick={this.onClickSendAuthNum}>인증</button>
+                            </div>
                         </div>
 
                         {this.state.auth_num_sending &&
                         <div className="form-group">
                             <label>인증번호</label>
-                            <input type="text" className="form-control" placeholder="인증번호" onChange={this.inputnumChange}/>
-                            <button type="submit" className="btn btn-dark btn-sm btn-block" 
-                            onClick={this.onClickCheckAuthNum}>확인</button>
+                            <div className="form-group-field">
+                                <input type="text" className="form-control" placeholder="인증번호" onChange={this.inputnumChange}/>
+                                <button type="submit" className="btn btn-dark btn-sm btn-block" 
+                                onClick={this.onClickCheckAuthNum}>확인</button>
+                            </div>
                         </div>}
 
-                        <button type="submit" className="btn btn-dark btn-lg btn-block" 
+                        <button id="register" type="submit" className="btn btn-dark btn-lg btn-block" 
                         onClick={this.onClickSubmit}>회원가입</button>
                     </div>
                 </div>

@@ -44,3 +44,19 @@ export const postSendAuthNum = (req) => {
         data: req
     })
 }
+
+export const postFindId = (req) => {
+    return instance({
+        url: "api/findid",
+        method: "post",
+        data: req
+    })
+}
+
+export const postFindPw = (req) => {
+    return instance({
+        url: "api/findpw",
+        method: "post",
+        data: req
+    })
+}

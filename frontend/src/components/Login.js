@@ -9,7 +9,7 @@ class Login extends Component {
         super();
         this.state = {
             member_id: "",
-            member_pw: "",
+            member_pw: ""
         }
     }
 
@@ -32,7 +32,7 @@ class Login extends Component {
                         document.location.href = "/";
                     }
                 }).catch(function(err) {
-                    console.log(err.response);
+                    console.log(err);
                     if (err.response.data.message === "Wrong Password") {
                         alert("비밀번호가 틀렸습니다");
                     } else if (err.response.data.message === "Unexist ID") {
@@ -50,6 +50,7 @@ class Login extends Component {
         console.log(this.state);
         return(
             <div>
+
                 <div className="login-content">
                     <div className="login-form">
 
@@ -66,11 +67,11 @@ class Login extends Component {
                         <button type="submit" className="btn btn-dark btn-lg btn-block" onClick={this.onClickLogin}>로그인</button>
                         <div className="bot">
                                 <Link className="bot-left" to="/register">회원가입</Link>
-                                <Link className="bot-right" href="#forgot">아이디/비밀번호 찾기</Link>
+                                <Link className="bot-right" to="/findidpw">아이디/비밀번호 찾기</Link>
                         </div>
-
                     </div>
                 </div>
+
             </div>
         );
     }

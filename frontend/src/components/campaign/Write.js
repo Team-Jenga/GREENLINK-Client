@@ -49,8 +49,9 @@ class Write extends Component {
         e.preventDefault();
         let reader = new FileReader();
         let file = e.target.files[0];
+        let name = encodeURI(file.name)
         this.setState({
-            event_image_url : `https://s3-greenlink.s3.ap-northeast-2.amazonaws.com/${file.name}`,
+            event_image_url : `https://s3-greenlink.s3.ap-northeast-2.amazonaws.com/${name}`,
             selectedFile : file
         })
         reader.onloadend = () => {
@@ -114,15 +115,15 @@ class Write extends Component {
             <div>
                 <Wrap>
                     <h2>Write</h2>
-                    <p>제목 : <input type ="text" name="title" onChange={this.titleWrite}/></p>
-                    <p>장소 : <input type ="text" name="location" onChange={this.locationWrite}/></p>
-                    <p>주최 : <input type ="text" name="management" onChange={this.managementWrite}/></p>
-                    <p>시작 일시 : <input type ="date" name="pStart" onChange={this.pStarteWrite}/></p>
-                    <p>종료 일시 : <input type="date" name="pEnd" onChange={this.pEndWrite}/></p>
-                    <p>캠페인 주소 : <input type="text" name="url" onChange={this.urlWrite}/></p>
-                    <p>캠페인 포스터 : <input type="file" name="imgaeUrl" accept="image/*" onChange={this.handleFile}/></p>
+                    제목 : <input type ="text" name="title" onChange={this.titleWrite}/>
+                    장소 : <input type ="text" name="location" onChange={this.locationWrite}/>
+                    주최 : <input type ="text" name="management" onChange={this.managementWrite}/>
+                    시작 일시 : <input type ="date" name="pStart" onChange={this.pStarteWrite}/>
+                    종료 일시 : <input type="date" name="pEnd" onChange={this.pEndWrite}/>
+                    캠페인 주소 : <input type="text" name="url" onChange={this.urlWrite}/>
+                    캠페인 포스터 : <input type="file" name="imgaeUrl" accept="image/*" onChange={this.handleFile}/>
                     {image_preview}
-                    <p>본문 : <textarea type="text" name="content" onChange={this.contentWrite}/></p>
+                    본문 : <textarea type="text" name="content" onChange={this.contentWrite}/>
                     <Button>
                         <Link to="/campaign" onClick={() => {this.onClickSubmit(); this.uploadFile(this.state.selectedFile)} }>작성</Link>
                         <Link to="/campaign">목록</Link>
@@ -141,6 +142,9 @@ const Wrap = styled.div`
         width:100%;
         height:20px;
         border:1px solid #ccc;
+    }
+    p {
+        min-height: 200px;
     }
     textarea {
         width: 100%;

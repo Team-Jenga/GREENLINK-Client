@@ -13,8 +13,8 @@ class MyPage extends Component {
             member_birth: "",
             member_phone: "",
             member_email: "",
-            member_loc: null,
-            member_num_of_family: null
+            member_loc: "",
+            member_num_of_family: ""
         }
     }
 
@@ -26,35 +26,29 @@ class MyPage extends Component {
             this.setState({member_birth: res.data.info[1].member_user_birth});
             this.setState({member_phone: res.data.info[1].member_user_phone});
             this.setState({member_email: res.data.info[1].member_user_email});
+            this.setState({member_loc: res.data.info[1].member_user_location});
+            this.setState({member_num_of_family: res.data.info[1].member_user_num_of_family});
+
+            if (this.state.member_loc === null &&
+                this.state.member_num_of_family === null) {
+                this.setState({member_loc: "거주지역을 설정해주세요"});
+                this.setState({member_num_of_family: "가구 수를 설정해주세요"});
+            }
+
         }).catch((err) => {
             console.log(err);
         })
     }
 
-    isMemberLocNull = () => {
-        if (this.state.member_loc === null) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    isMemberFamilyNull = () => {
-        if (this.state.member_num_of_family === null) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
     componentDidMount() { 
-        const { loadingUserInfo } = this;
+        const { loadingUserInfo} = this;
         const userId = localStorage.getItem("id");
         loadingUserInfo(userId);
     }
     
     render() {
         const userId = localStorage.getItem("id");
+        console.log(this.state);
 
         return(
             <div className="mypage-content">
@@ -72,12 +66,13 @@ class MyPage extends Component {
                         <div>생일: {this.state.member_birth}</div>
                         <div>전화번호: {this.state.member_phone}</div>
                         <div>이메일: {this.state.member_email}</div>
-                        <div>거주지역: {this.isMemberLocNull ? "거주지역을 설정해주세요" : this.state.member_loc}</div>
-                        <div>가구 수: {this.isMemberFamilyNull ? "가구 수를 설정해주세요" : this.state.member_num_of_family}</div>
+                        <div>거주지역: {this.state.member_loc}</div>
+                        <div>가구 수: {this.state.member_num_of_family}</div>
 
                         <button id="pw-modify" type="submit" className="btn btn-dark btn-sm btn-block" 
                         >비밀번호 변경</button>
-                        <Link to="/mypage/modify"><button id="info-modify" type="submit" className="btn btn-dark btn-sm btn-block" 
+                        <Link to="/mypage/modifyinfo">
+                        <button id="info-modify" type="submit" className="btn btn-dark btn-sm btn-block" 
                         >회원정보 수정</button></Link>
                     </div>
 

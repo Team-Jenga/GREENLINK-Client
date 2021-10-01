@@ -21,7 +21,7 @@ class Read extends Component {
             this.setState({
                 event:response.data,
             });
-            console.log(this.state.event);
+            console.log(response);
         } catch(e) {
             console.log(e);
         }
@@ -32,14 +32,27 @@ class Read extends Component {
         loadingData(); 
     }
     
-    deleteRow(id, e){  
-        axios.delete(`http://ec2-52-78-154-227.ap-northeast-2.compute.amazonaws.com/api/event/${id}`)  
+    deleteRow(eventId){  
+        axios.delete(`http://ec2-52-78-154-227.ap-northeast-2.compute.amazonaws.com/api/event/${eventId}`)  
           .then(res => {  
             console.log(res);  
             console.log(res.data);  
-          })  
-        
-      }  
+        })      
+    }  
+
+    
+    addFavorite = () => {
+        console.log(this.state.event.member)
+        console.log(this.state.event.event_id)
+        axios.post(`http://ec2-52-78-154-227.ap-northeast-2.compute.amazonaws.com/api/favorite`, {
+            member: this.state.event.member,
+            event : this.state.event.event_id
+        }).then(function (response) {
+            console.log(response);
+        }).catch(function (error) {
+            console.log(error);
+        }).then(alert('즐겨찾기 추가 성공'));
+    }
 
     render() {
         const {event} = this.state;
@@ -65,8 +78,9 @@ class Read extends Component {
                         <img className="CampaignImg" alt="NoImage" src={event.event_image_url} width="1000px" height="500px"/>
                         <Button>
                             <Link to="/campaign">목록</Link>
-                            <Link to="/campaign" onClick={(e) => {this.deleteRow(event.event_id, e); alert("삭제되었습니다.");} }>삭제</Link>
+                            <Link to="/campaign" onClick={(e) => {this.deleteRow(event.event_id); alert("삭제되었습니다.");} }>삭제</Link>
                             <Link to={`/campaign/modify/${event.event_id}`}>수정</Link>
+                            <Link to={`/campaign`} onClick={this.addFavorite}>즐겨찾기</Link>
                         </Button>
                     </Wrap>
 

@@ -47,7 +47,7 @@ class List extends Component {
                                             backgroundImage: `url(${item.event_image_url})`,
                                             width:'100%',
                                             height:'260px',
-                                            backgroundSize: 'cover', 
+                                            backgroundSize: '100%', 
                                             backgroundPosition: 'center',
                                             backgroundRepeat: 'no-repeat',
                                         }}></div>
@@ -76,7 +76,7 @@ class List extends Component {
                                                     backgroundImage: `url(${item.event_image_url})`,
                                                     width:'100%',
                                                     height:'260px',
-                                                    backgroundSize: 'cover', 
+                                                    backgroundSize: '100%', 
                                                     backgroundPosition: 'center',
                                                     backgroundRepeat: 'no-repeat',
                                                 }}></div>

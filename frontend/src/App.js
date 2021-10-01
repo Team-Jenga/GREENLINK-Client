@@ -8,7 +8,6 @@ import Navbar from './components/Navbar/Navbar';
 
 import Login from './components/Login';
 import MyPage from './components/MyPage';
-import Login from './components/Login';
 import Register from './components/Register';
 import FindIdPw from './components/FindIdPw';
 

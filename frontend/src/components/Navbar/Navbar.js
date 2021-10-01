@@ -21,7 +21,7 @@ class Navbar extends Component {
 
     onClickLogout = () => {
         localStorage.clear();
-        window.location.replace("/");
+        document.location.replace("/");
     }
 
     render() {

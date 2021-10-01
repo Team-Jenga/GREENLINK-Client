@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import Select from 'react-select';
 import { locOptions } from './LocOptions';
-import '../../css/MyInfoModify.css'
+import '../../css/ModifyMyInfo.css'
 
 import { getUserInfo, postCheckNickname, postSendAuthNum, putModifyUserInfo } from '../../api/apiClient';
 
-class MyInfoModify extends Component {
+class ModifyMyInfo extends Component {
     constructor() {
         super();
         this.state = {
@@ -151,6 +151,10 @@ class MyInfoModify extends Component {
             }
     }
 
+    onClickCancel = () => {
+        document.location.reload();
+    }
+
     componentDidMount() { 
         const { loadingUserInfo } = this;
         const userId = localStorage.getItem("id");
@@ -237,6 +241,9 @@ class MyInfoModify extends Component {
                     <button id="modify" type="submit" className="btn btn-dark btn-lg btn-block" 
                     onClick={this.onClickModify}>정보수정</button>
 
+                    <button id="modify-cancel" type="submit" className="btn btn-dark btn-lg btn-block" 
+                    onClick={this.onClickCancel}>취소</button>
+
                 </div>
 
             </div>
@@ -246,4 +253,4 @@ class MyInfoModify extends Component {
     }
 }
 
-export default MyInfoModify;
+export default ModifyMyInfo;

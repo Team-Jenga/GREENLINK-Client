@@ -9,7 +9,6 @@ class List extends Component {
 
     loadingData = async () => { 
         try { 
-            setLoading(true);
             const response = await axios.get("http://ec2-52-78-154-227.ap-northeast-2.compute.amazonaws.com/api/event", {
                 params: {
                     order_by:'hits'

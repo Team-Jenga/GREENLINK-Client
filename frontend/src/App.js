@@ -4,10 +4,13 @@ import './App.css';
 import {BrowserRouter, Route, Switch} from "react-router-dom";
 import CarouselContainer from './components/Home';
 import About from './components/About';
+import Navbar from './components/Navbar/Navbar';
+
 import Login from './components/Login';
 import MyPage from './components/MyPage';
+import Login from './components/Login';
 import Register from './components/Register';
-import Navbar from './components/Navbar/Navbar';
+import FindIdPw from './components/FindIdPw';
 
 import List from './components/notice/List';
 import Read from './components/notice/Read';
@@ -32,7 +35,9 @@ class App extends Component {
             <Route exact path="/mypage" component={MyPage} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/register" component={Register} />
-
+              
+            <Route exact path="/findidpw" component={FindIdPw} />
+            
             <Route exact path="/notice" component={List} />
             <Route exact path="/notice/read/:id?" component={Read} />     
             <Route exact path="/notice/write" component={Write} />

@@ -16,12 +16,12 @@ class Navbar extends Component {
     }
 
     handleClick = () => {
-        this.setState({ clicked: !this.state.clicked });
+        this.setState({clicked: !this.state.clicked});
     }
 
     onClickLogout = () => {
         localStorage.clear();
-        window.location.reload();
+        window.location.replace("/");
     }
 
     render() {

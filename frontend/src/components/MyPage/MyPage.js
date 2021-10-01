@@ -67,10 +67,11 @@ class MyPage extends Component {
                         <div>전화번호: {this.state.member_phone}</div>
                         <div>이메일: {this.state.member_email}</div>
                         <div>거주지역: {this.state.member_loc}</div>
-                        <div>가구 수: {this.state.member_num_of_family}</div>
+                        <div>가구 수: {this.state.member_num_of_family}명</div>
 
+                        <Link to="/mypage/modifypw">
                         <button id="pw-modify" type="submit" className="btn btn-dark btn-sm btn-block" 
-                        >비밀번호 변경</button>
+                        >비밀번호 변경</button></Link>
                         <Link to="/mypage/modifyinfo">
                         <button id="info-modify" type="submit" className="btn btn-dark btn-sm btn-block" 
                         >회원정보 수정</button></Link>

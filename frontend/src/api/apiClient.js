@@ -63,7 +63,7 @@ export const postFindPw = (req) => {
     })
 }
 
-// 회원정보 가져오기 - MyPage.js, MyInfoModify.js
+// 회원정보 가져오기 - MyPage.js, ModifyMyInfo.js
 export const getUserInfo = (id) => {
     return instance({
         url: `api/member/${id}`,
@@ -71,10 +71,19 @@ export const getUserInfo = (id) => {
     })
 }
 
-// 회원정보 수정 - MyInfoModify.js
+// 회원정보 수정 - MofifyMyInfo.js
 export const putModifyUserInfo = (req, id) => {
     return instance({
         url: `api/member/${id}`,
+        method: "put",
+        data: req
+    })
+}
+
+// 비밀번호 변경 - ModifyPw.js
+export const putModifyPw = (req, id) => {
+    return instance({
+        url: `api/member/${id}/changepw`,
         method: "put",
         data: req
     })

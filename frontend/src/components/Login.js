@@ -24,7 +24,7 @@ class Login extends Component {
                     member_id: this.state.member_id,
                     member_pw: this.state.member_pw
                 }).then(function(res) {
-                    
+
                     // 로그인 성공
                     if (res.status === 200) {
                         localStorage.setItem("id", member_id);

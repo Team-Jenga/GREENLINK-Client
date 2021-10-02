@@ -55,7 +55,16 @@ class List extends Component {
             const dLL = arr[i]["event_period_end"].split('-');
             const dday = new Date(dLL[0], dLL[1]-1, dLL[2]);
             const gap =  (today.getTime() - dday.getTime())*(-1);
-            ddayList.push(Math.ceil(gap/(1000*60*60*24)));
+            const tmp = Math.ceil(gap/(1000*60*60*24))
+            if (tmp > 0) {
+                ddayList.push("D-" + String(tmp))
+            }
+            else if(tmp == 0) {
+                ddayList.push("D-Day")
+            }
+            else{
+                ddayList.push("마감")
+            }
         }
         
         if (localStorage.getItem("auth") === "admin") {
@@ -93,7 +102,7 @@ class List extends Component {
                                             <p className= "campaign-date">주관 {item.event_management}</p>
                                         </div>
                                         <div className='right'>
-                                            <p className= "campaign-date">D-day :{ddayList[i++]}</p>
+                                            <p className= "campaign-dday">{ddayList[i++]}</p>
                                             <p className= "campaign-date">views :{item.event_views}</p>
                                         </div>
                                     </div>
@@ -133,7 +142,7 @@ class List extends Component {
                                             <p className= "campaign-date">주관 {item.event_management}</p>
                                         </div>
                                         <div className='right'>
-                                            <p className= "campaign-date" >D-day - {ddayList[i++]}</p>
+                                            <p className= "campaign-dday" >{ddayList[i++]}</p>
                                             <p className= "campaign-date">views :{item.event_views}</p>
                                         </div>
                                     </div>
@@ -167,7 +176,7 @@ const Wrap = styled.div`
 
     .right {
         flex:1;
-        margin-top:100px;
+        margin-top:70px;
         text-align:right;
     }
 `;
@@ -204,8 +213,8 @@ const ListItem = styled.div`
     .campaign-info {
         padding: 10px;
         width:100%;
-        height:180px;
-        background:rgb(247, 255, 245);
+        height:200px;
+        background:rgb(250, 255, 250);
     }
     
     .campaign-title {
@@ -221,6 +230,16 @@ const ListItem = styled.div`
         text-overflow: ellipsis;
         width: 300px; 
         white-space:nowrap;
+    }
+
+    .campaign-dday {
+        font-size: 30px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: 300px; 
+        white-space:nowrap;
+        color:rgb(68,145,44);
+        font-weight:bold;
     }
 }
 `;

@@ -11,7 +11,7 @@ class List extends Component {
         try { 
             const response = await axios.get("http://ec2-52-78-154-227.ap-northeast-2.compute.amazonaws.com/api/notice"); 
             console.log(`STATUS : ${response.status}`)
-            this.setState({ boards: response.data, });
+            this.setState({ boards: response.data.data, });
             console.log(this.state)
         } catch (e) 
         { console.log(e); }

@@ -4,18 +4,25 @@ import './App.css';
 import {BrowserRouter, Route, Switch} from "react-router-dom";
 import CarouselContainer from './components/Home';
 import About from './components/About';
-import Campaign from './components/Campaign';
+import Navbar from './components/Navbar/Navbar';
+
+import Login from './components/Login';
+import FindIdPw from './components/FindIdPw';
+import Register from './components/Register';
+
 import MyPage from './components/MyPage/MyPage';
 import ModifyMyInfo from './components/MyPage/ModifyMyInfo';
 import ModifyPw from './components/MyPage/ModifyPw';
-import Login from './components/Login';
-import Register from './components/Register';
-import FindIdPw from './components/FindIdPw';
+
 import List from './components/notice/List';
 import Read from './components/notice/Read';
 import Write from './components/notice/Write';
 import Modify from './components/notice/Modify'
-import Navbar from './components/Navbar/Navbar';
+
+import cList from './components/campaign/List';
+import cRead from './components/campaign/Read';
+import cWrite from './components/campaign/Write';
+import cModify from './components/campaign/Modify';
 
 
 class App extends Component {

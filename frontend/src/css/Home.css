@@ -10,8 +10,9 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    max-width: 1200px;
+
     margin: auto;
+    width: 100%;
 }
 
 .home-area .ranking {
@@ -48,4 +49,9 @@
 
 .ranking a:hover {
     color: black;
+}
+
+.topten{
+    color: rgb(68,145,44);
+    font-weight:bold;
 }

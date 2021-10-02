@@ -110,7 +110,7 @@ class Home extends Component {
           </div>
 
           <div className="notice">
-            <h3>공지사항</h3>
+            <h3>공지사항 📢</h3>
             <ul>
               {noticeList}
             </ul>

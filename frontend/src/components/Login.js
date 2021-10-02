@@ -30,14 +30,13 @@ class Login extends Component {
                         localStorage.setItem("id", member_id);
                         localStorage.setItem("auth", res.data.auth)
                         document.location.href = "/";
+                    } else if (res.status === 201) {
+                        alert("비밀번호가 틀렸습니다");
+                    } else if (res.status === 202) {
+                        alert("존재하지 않는 아이디입니다");
                     }
                 }).catch(function(err) {
                     console.log(err);
-                    if (err.response.data.message === "Wrong Password") {
-                        alert("비밀번호가 틀렸습니다");
-                    } else if (err.response.data.message === "Unexist ID") {
-                        alert("존재하지 않는 아이디입니다");
-                    }
                 })
             } else if (this.state.member_id === "") {
                 alert("아이디를 입력해주세요");

@@ -5,7 +5,7 @@
     justify-content: center;
     align-items: center;
     font-size: 1rem;
-    border: 1px solid rgb(204, 204, 204);
+    border: 1px solid rgb(225, 225, 225);
     margin-bottom: 50px;
 }
 
@@ -41,9 +41,8 @@
 }
 
 .my-nav-link:hover {
-    /* background-color: rgb(75, 255, 90); */
     border-radius: 4px;
-    color: black;
+    color: rgb(100, 100, 100);
     transition: all 0.2s ease-out;
 }
 

@@ -1,5 +1,5 @@
 :root {
-    --primary: rgb(68, 253, 77);
+    --primary: rgb(150, 150, 150);
 }
 
 .menu-btn {
@@ -15,7 +15,7 @@
     padding: 8px 20px;
     transition: all 0.3s ease-out;
     background: rgb(255, 255, 255);
-    color: rgb(0, 255, 170);
+    color: rgb(150, 150, 150);
     transition: 250ms;
 }
 

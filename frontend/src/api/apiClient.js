@@ -88,3 +88,12 @@ export const putModifyPw = (req, id) => {
         data: req
     })
 }
+
+// 캠페인 리스트 조회순으로 가져오기 - Home.js
+export const getCampaignList = (order) => {
+    return instance({
+        url: "api/event",
+        method: "get",
+        params: order
+    })
+}

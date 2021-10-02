@@ -1,7 +1,7 @@
 import React, { Component }from "react";
 import '../../css/MyPage.css';
 
-import { getUserInfo } from '../../api/apiClient';
+import { getUserInfo, getFavorite } from '../../api/apiClient';
 import { Link } from 'react-router-dom';
 
 class MyPage extends Component {
@@ -14,7 +14,9 @@ class MyPage extends Component {
             member_phone: "",
             member_email: "",
             member_loc: "",
-            member_num_of_family: ""
+            member_num_of_family: "",
+
+            events: []
         }
     }
 
@@ -40,14 +42,24 @@ class MyPage extends Component {
         })
     }
 
+    loadingUserFavorite = (id) => {
+        getFavorite({member:id}).then((res) => {
+            this.setState({events: res.data.event_list})
+        }).catch((err) => {
+            console.log(err);
+        })
+    }
+
     componentDidMount() { 
-        const { loadingUserInfo} = this;
+        const { loadingUserInfo, loadingUserFavorite} = this;
         const userId = localStorage.getItem("id");
         loadingUserInfo(userId);
+        loadingUserFavorite(userId);
     }
     
     render() {
         const userId = localStorage.getItem("id");
+        const { events } = this.state; 
         console.log(this.state);
 
         return(
@@ -80,9 +92,34 @@ class MyPage extends Component {
                     <div className="bookmark-campaign">
                         <h3>캠페인 즐겨찾기</h3>
                     </div>
+                
 
                 </div>
-
+                <div className="Wrap">
+                {events.map((item)=> {
+                            return (
+                                <div className= "ListItem">
+                                    <div className= "campaign-item" key = {item.event_id}>
+                                        <Link to={`/campaign/read/${item.event_id}`}>
+                                            <div class='campaign-info'>
+                                                <div style = {{ 
+                                                    backgroundImage: `url(${item.event_image_url})`,
+                                                    width:'100%',
+                                                    height:'260px',
+                                                    backgroundSize: 'cover', 
+                                                    backgroundPosition: 'center',
+                                                    backgroundRepeat: 'no-repeat',
+                                                }}></div>
+                                                <h4 className= "campaign-title">{item.event_title}</h4>
+                                                <p className= "campaign-date">{item.event_location}</p>
+                                                <p className= "campaign-date">{item.event_reporting_date}</p>
+                                            </div>
+                                        </Link>
+                                    </div>
+                                </div>
+                            )
+                        })}
+                    </div>
             </div>
         );
     }

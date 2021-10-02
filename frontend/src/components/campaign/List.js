@@ -69,17 +69,17 @@ class List extends Component {
                     <Wrap> 
                         <h2><b>캠페인</b></h2>
                         {events.map((item)=> {
+                            const image_url = item.event_image_url.replace("(", "%28").replace(")","%29");
                             return (
                                     <ListItem className= "campaign-item" key = {item.event_id}>
                                         <Link to={`/campaign/read/${item.event_id}`}>
                                             <div class='campaign-info'>
                                                 <div style = {{ 
-                                                    
-                                                    backgroundImage: "url(${item.event_image_url})",
+                                                    backgroundImage: "url("+image_url+")",
                                                     width:'100%',
                                                     height:'260px',
                                                     backgroundSize: 'cover', 
-                                                    backgroundPosition: 'center',
+                                                    backgroundPosition: 'center', 
                                                     backgroundRepeat: 'no-repeat',
                                                 }}></div>
                                                 <h4 className= "campaign-title">{item.event_title}</h4>

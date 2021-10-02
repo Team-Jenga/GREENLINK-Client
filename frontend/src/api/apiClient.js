@@ -97,3 +97,12 @@ export const getCampaignList = (order) => {
         params: order
     })
 }
+
+// 캠페인 즐겨찾기 가져오기 - MyPage.js
+export const getFavorite = (id) => {
+    return instance({
+        url: `api/favorites`,
+        method: "get",
+        params: id
+    })
+}

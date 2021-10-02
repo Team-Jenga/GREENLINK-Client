@@ -5,7 +5,10 @@ import axios from 'axios';
 import styled from 'styled-components';
 
 class List extends Component { 
-    state = { events: [], }; 
+    state = { 
+        events: [], 
+        searchWord:'',
+    }; 
 
     loadingData = async () => { 
         try { 
@@ -20,6 +23,22 @@ class List extends Component {
         { console.log(e); }
     };
 
+    searchCampaign = (e) => {this.setState({searchWord: e.target.value})};
+
+    onClickSubmit = async () => {
+        if (this.state.searchWord !== "") {
+        try { 
+            const response = await axios.get("http://ec2-52-78-154-227.ap-northeast-2.compute.amazonaws.com/api/eventsearch", {
+                params: {
+                    search_key: this.state.searchWord
+                }
+            }); 
+            this.setState({ events: response.data.event_list });
+            console.log(this.state.events)
+            } catch (e) { console.log(e); }
+        }
+    };
+
     componentDidMount() { 
         const { loadingData } = this; 
         loadingData(); 
@@ -31,7 +50,9 @@ class List extends Component {
             return (
                     <Wrap>
                         <div>
-                        <h2><b>캠페인</b></h2>
+                        <h3><b>어떤 캠페인을 찾으시나요?{'\u00A0'}{'\u00A0'}{'\u00A0'}</b></h3>
+                        <input type ="text" name="searchCampaign" onChange={this.searchCampaign} />
+                        <button type ="button" name="searchButton" value="검색" onClick={() => {this.onClickSubmit()}}><img src='../../images/search.png' width='25px' height='25px' alt=""/></button>
                         <Button>
                             <Link to="/campaign/write">캠페인 쓰기</Link>
                         </Button>
@@ -103,7 +124,7 @@ class List extends Component {
 const Wrap = styled.div`
     padding:20px;
     margin: 10px 230px 10px 230px;
-    h2 {
+    h3 {
         display:inline-block;
         float:left
     }

@@ -1,7 +1,7 @@
 export const MenuItems = [
     {
         id : 1,
-        title: '캠페인 검색',
+        title: '캠페인',
         url: '/campaign',
         cName: 'my-nav-link'
     },
@@ -24,7 +24,7 @@ export const MenuItems = [
 export const MenuItems2 = [
     {
         id : 1,
-        title: '캠페인 검색',
+        title: '캠페인',
         url: '/campaign',
         cName: 'my-nav-link'
     },

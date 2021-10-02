@@ -1,141 +1,141 @@
 .NavbarItems {
-    height: 110px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1rem;
-    border-bottom: 1px solid rgb(225, 225, 225);
+  height: 110px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.3rem;
+  border-bottom: 1px solid rgb(225, 225, 225);
 }
 
 .NavbarLogo {
-    justify-self: start;
-    margin-right: 10rem;
+  justify-self: start;
+  margin-right: 10rem;
 }
 
 .logo {
-    width: 15rem;
+  width: 15rem;
 }
 
 .my-nav-menu {
-    display: grid;
-    grid-template-columns: repeat(3, auto);
-    list-style: none;
-    text-align: center;
-    width: 40vw;
-    justify-content: end;
-    margin-right: 3rem;
-    margin-bottom: 0;
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  list-style: none;
+  text-align: center;
+  width: 40vw;
+  justify-content: end;
+  margin-right: 3rem;
+  margin-bottom: 0;
 }
 
 .my-nav-link {
-    color: black;
-    margin-top: 1rem;
-    text-decoration: none;
-    padding: 0.5rem 1rem;
+  color: black;
+  margin-top: 1rem;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
 }
 
 .my-nav-link-mobile {
-    display: none;
+  display: none;
 }
 
 .my-nav-link:hover {
-    border-radius: 4px;
-    color: rgb(100, 100, 100);
-    transition: all 0.2s ease-out;
+  border-radius: 4px;
+  color: rgb(100, 100, 100);
+  transition: all 0.2s ease-out;
 }
 
 .fa-bars {
-    font-size: 1.5rem;
+  font-size: 1.5rem;
 }
 
 .fa-times {
-    font-size: 1.5rem;
+  font-size: 1.5rem;
 }
 
 .menu-icon {
-    display: none;
+  display: none;
 }
 
 @media screen and (max-width: 960px) {
-    .NavbarItems {
-        position: relative;
-    }
+  .NavbarItems {
+    position: relative;
+  }
 
-    .my-nav-menu {
-        display: flex;
-        flex-direction: column;
-        justify-content: start;
-        width: 100%;
-        height: 400px;
-        position: absolute;
-        top: 110px;
-        left: 100%;
-        opacity: 1;
-        transition: all 0.5s ease;
-    }
+  .my-nav-menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    width: 100%;
+    height: 400px;
+    position: absolute;
+    top: 110px;
+    left: 100%;
+    opacity: 1;
+    transition: all 0.5s ease;
+  }
 
-    .my-nav-menu.active {
-        background: rgb(255, 255, 255);
-        left: 0;
-        opacity: 1;
-        transition: all 0.5s ease;
-        z-index: 1;
-    }
+  .my-nav-menu.active {
+    background: rgb(255, 255, 255);
+    left: 0;
+    opacity: 1;
+    transition: all 0.5s ease;
+    z-index: 1;
+  }
 
-    .my-nav-link {
-        margin-top: auto;
-        text-align: center;
-        padding: 2rem;
-        width: 100%;
-        display: table;
-    }
+  .my-nav-link {
+    margin-top: auto;
+    text-align: center;
+    padding: 2rem;
+    width: 100%;
+    display: table;
+  }
 
-    .my-nav-link:hover {
-        background: rgb(213, 252, 215);
-        border-radius: 0;
-    }
+  .my-nav-link:hover {
+    background: rgb(213, 252, 215);
+    border-radius: 0;
+  }
 
-    .NavbarLogo {
-        position: absolute;
-        top: 20px;
-        left: 0px;
-    }
+  .NavbarLogo {
+    position: absolute;
+    top: 20px;
+    left: 0px;
+  }
 
-    .menu-icon {
-        display: block;
-        position: absolute;
-        top: 20px;
-        right: 0;
-        transform: translate(-100%, 30%);
-        font-size: 1.8rem;
-        cursor: pointer;
-    }
+  .menu-icon {
+    display: block;
+    position: absolute;
+    top: 20px;
+    right: 0;
+    transform: translate(-100%, 30%);
+    font-size: 1.8rem;
+    cursor: pointer;
+  }
 
-    .fa-times {
-        font-size: 1.9rem;
-    }
+  .fa-times {
+    font-size: 1.9rem;
+  }
 
-    .my-nav-link-mobile {
-        display: block;
-        text-align: center;
-        text-decoration: none;
-        padding: 1.5rem;
-        margin: 2rem auto;
-        border-radius: 4px;
-        width: 20%;
-        background: black;
-        color: white;
-        font-size: 1rem;
-    }
+  .my-nav-link-mobile {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    padding: 1.5rem;
+    margin: 2rem auto;
+    border-radius: 4px;
+    width: 20%;
+    background: black;
+    color: white;
+    font-size: 1rem;
+  }
 
-    .my-nav-link-mobile:hover {
-        background: rgb(199, 199, 199);
-        text-decoration: none;
-        color: black;
-        transition: 250ms;
-    }
+  .my-nav-link-mobile:hover {
+    background: rgb(199, 199, 199);
+    text-decoration: none;
+    color: black;
+    transition: 250ms;
+  }
 
-    .menu-btn {
-        display: none;
-    }
+  .menu-btn {
+    display: none;
+  }
 }

@@ -1,96 +1,96 @@
 .home-content {
-    align-items: center;
-    justify-content: center;
-    min-width: 1200px;
-    margin-top: 40px;
-    margin-bottom: 200px;
+  align-items: center;
+  justify-content: center;
+  min-width: 1200px;
+  margin-top: 40px;
+  margin-bottom: 200px;
 }
 
 .home-area {
-    display: flex;
-    justify-content: center;
-    margin-top: 100px;
+  display: flex;
+  justify-content: center;
+  margin-top: 100px;
 }
 
 .home-area .ranking {
-    width: 500px;
-    margin-left: 100px;
+  width: 500px;
+  margin-left: 100px;
 }
 
 .home-area h3 {
-    font-size: 25px;
-    font-weight: bold;
+  font-size: 25px;
+  font-weight: bold;
 }
 
 .ranking .rank {
-    margin: 10px;
-    color: rgb(68,145,44);
-    font-weight: bolder;
-    font-size: 15px;
+  margin: 10px;
+  color: rgb(68, 145, 44);
+  font-weight: bolder;
+  font-size: 16px;
 }
 
 .ranking ul {
-    margin-top: 20px;
-    padding-left: 0;
+  margin-top: 20px;
+  padding-left: 0;
 }
 
 .ranking li {
-    display: flex;
-    height: 50px;
-    align-items: center;
-    list-style: none;
-    font-size: small;
+  display: flex;
+  height: 50px;
+  align-items: center;
+  list-style: none;
+  font-size: 16px;
 }
 
 .ranking li:hover {
-    border-radius: 3px;
-    background: rgb(240, 240, 240);
-    transition: all 0.2s ease-out;
+  border-radius: 3px;
+  background: rgb(240, 240, 240);
+  transition: all 0.2s ease-out;
 }
 
 .ranking a {
-    color: black;
-    text-decoration: none;
+  color: black;
+  text-decoration: none;
 }
 
 .ranking a:hover {
-    color: black;
+  color: black;
 }
 
-.topten{
-    color: rgb(68,145,44);
-    font-weight:bold;
+.topten {
+  color: rgb(68, 145, 44);
+  font-weight: bold;
 }
 
 .home-area .notice {
-    width: 500px;
-    padding-left: 100px;
+  width: 500px;
+  padding-left: 100px;
 }
 
 .notice ul {
-    margin-top: 20px;
-    padding-left: 0;
+  margin-top: 20px;
+  padding-left: 0;
 }
 
 .notice li {
-    display: flex;
-    height: 50px;
-    align-items: center;
-    list-style: none;
-    font-size: small;
+  display: flex;
+  height: 50px;
+  align-items: center;
+  list-style: none;
+  font-size: 16px;
 }
 
 .notice li:hover {
-    border-radius: 3px;
-    background: rgb(240, 240, 240);
-    transition: all 0.2s ease-out;
+  border-radius: 3px;
+  background: rgb(240, 240, 240);
+  transition: all 0.2s ease-out;
 }
 
 .notice a {
-    color: black;
-    text-decoration: none;
+  color: black;
+  text-decoration: none;
 }
 
 .notice a:hover {
-    color: black;
+  color: black;
 }

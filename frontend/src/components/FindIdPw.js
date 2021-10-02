@@ -35,6 +35,18 @@ class FindIdPw extends Component {
         }
     }
 
+    IDhandleKeyPress = (e) => {
+        if (e.key === "Enter") {
+          this.onClickFindId();
+        }
+    };
+
+    PWhandleKeyPress = (e) => {
+        if (e.key === "Enter") {
+          this.onClickFindPw();
+        }
+    };
+
     onClickFindPw = () => {
         if (this.state.input_id !== "") {
             postFindPw({
@@ -61,7 +73,7 @@ class FindIdPw extends Component {
 
                         <div className="form-group">
                             <label>Id 찾기</label>
-                            <input type="text" className="form-control" placeholder="이메일을 입력하세요" onChange={this.findIdChange}/>
+                            <input type="text" className="form-control" onKeyPress={this.IDhandleKeyPress} placeholder="이메일을 입력하세요" onChange={this.findIdChange}/>
                             <button type="submit" className="btn btn-dark btn-sm btn-block" 
                             onClick={this.onClickFindId}>확인</button>
                         </div>
@@ -74,7 +86,7 @@ class FindIdPw extends Component {
 
                         <div className="form-group">
                             <label>Password 찾기</label>
-                            <input type="text" className="form-control" placeholder="아이디를 입력하세요" onChange={this.findPwChange}/>
+                            <input type="text" className="form-control" onKeyPress={this.PWhandleKeyPress} placeholder="아이디를 입력하세요" onChange={this.findPwChange}/>
                             <button type="submit" className="btn btn-dark btn-sm btn-block" 
                             onClick={this.onClickFindPw}>확인</button>
                         </div>

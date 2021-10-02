@@ -46,8 +46,8 @@ class Home extends Component {
     console.log(this.state.notice);
     const campaignList = this.state.campaign;
     const getNotice = this.state.notice;
-
-    const campaignRank = campaignList.map((item, idx) => {
+    
+    const campaignRank = campaignList.map((item, idx)=> {
       if (idx < 10) {
         return (
           <li key={item.event_id}>
@@ -58,7 +58,7 @@ class Home extends Component {
       }
     })
 
-    const noticeList = getNotice.map((item, idx) => {
+    const noticeList = getNotice.map((item, idx)=> {
       if (idx < 10) {
         return (
           <li key={item.id}>

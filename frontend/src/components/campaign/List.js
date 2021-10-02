@@ -39,6 +39,12 @@ class List extends Component {
             } catch (e) { console.log(e); }
         }
     };
+    
+    handleKeyPress = (e) => {
+        if (e.key === "Enter") {
+          this.onClickSubmit();
+        }
+      };
 
     componentDidMount() { 
         const { loadingData } = this; 
@@ -72,7 +78,7 @@ class List extends Component {
                     <Wrap>
                         <div>
                         <h3><b>어떤 캠페인을 찾으시나요?{'\u00A0'}{'\u00A0'}{'\u00A0'}</b></h3>
-                        <input type ="text" name="searchCampaign" onChange={this.searchCampaign} />
+                        <input type ="text" name="searchCampaign" onKeyPress={this.contexthandleKeyPress} onChange={this.searchCampaign} />
                         <button type ="button" name="searchButton" value="검색" onClick={() => {this.onClickSubmit()}}><img src='../../images/search.png' width='25px' height='25px' alt=""/></button>
                         <Button>
                             <Link to="/campaign/write">캠페인 쓰기</Link>

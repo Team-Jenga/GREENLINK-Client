@@ -45,6 +45,12 @@ class Login extends Component {
             }
     }
 
+    handleKeyPress = (e) => {
+        if (e.key === "Enter") {
+          this.onClickLogin();
+        }
+    };
+
     render() {
         console.log(this.state);
         return(
@@ -60,7 +66,7 @@ class Login extends Component {
 
                         <div className="form-group">
                             <label>Password</label>
-                            <input type="password" className="form-control" placeholder="비밀번호" onChange={this.pwChange}/>
+                            <input type="password" onKeyPress={this.handleKeyPress} className="form-control" placeholder="비밀번호" onChange={this.pwChange}/>
                         </div>
 
                         <button type="submit" className="btn btn-dark btn-lg btn-block" onClick={this.onClickLogin}>로그인</button>

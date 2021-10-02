@@ -59,7 +59,7 @@ class List extends Component {
             if (tmp > 0) {
                 ddayList.push("D-" + String(tmp))
             }
-            else if(tmp == 0) {
+            else if(tmp === 0) {
                 ddayList.push("D-Day")
             }
             else{

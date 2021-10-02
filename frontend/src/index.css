@@ -13,8 +13,8 @@ code {
 }
 
 .slideImage {
-  width: 1000px;
-  height: 350px;
+  width: 100%;
+  height: 380px;
 
   display: block;
   margin: auto;

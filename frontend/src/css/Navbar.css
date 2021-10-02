@@ -1,10 +1,12 @@
 .NavbarItems {
-    background: linear-gradient(90deg, rgb(225, 255, 226), rgb(95, 255, 103));
-    height: 70px;
+    /* background: linear-gradient(90deg, rgb(225, 255, 226), rgb(95, 255, 103)); */
+    height: 100px;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 1rem;
+    border: 1px solid rgb(204, 204, 204);
+    margin-bottom: 50px;
 }
 
 .NavbarLogo {
@@ -13,7 +15,7 @@
 }
 
 .logo {
-    width: 10rem;
+    width: 15rem;
 }
 
 .my-nav-menu {
@@ -39,7 +41,7 @@
 }
 
 .my-nav-link:hover {
-    background-color: rgb(75, 255, 90);
+    /* background-color: rgb(75, 255, 90); */
     border-radius: 4px;
     color: black;
     transition: all 0.2s ease-out;
@@ -76,7 +78,7 @@
     }
 
     .my-nav-menu.active {
-        background: rgb(140, 255, 146);
+        /* background: rgb(140, 255, 146); */
         left: 0;
         opacity: 1;
         transition: all 0.5s ease;
@@ -92,7 +94,7 @@
     }
 
     .my-nav-link:hover {
-        background: rgb(213, 252, 215);
+        /* background: rgb(213, 252, 215); */
         border-radius: 0;
     }
 
@@ -125,7 +127,7 @@
         margin: 2rem auto;
         border-radius: 4px;
         width: 25%;
-        background: rgb(68, 253, 77);
+        /* background: rgb(68, 253, 77); */
         color: black;
         font-size: 1rem;
     }
@@ -133,7 +135,7 @@
     .my-nav-link-mobile:hover {
         background: white;
         text-decoration: none;
-        color: rgb(0, 255, 170);
+        /* color: rgb(0, 255, 170); */
         transition: 250ms;
     }
 

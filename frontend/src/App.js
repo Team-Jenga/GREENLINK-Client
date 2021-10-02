@@ -3,7 +3,6 @@ import './App.css';
 
 import {BrowserRouter, Route, Switch} from "react-router-dom";
 import CarouselContainer from './components/Home';
-import About from './components/About';
 import Navbar from './components/Navbar/Navbar';
 
 import Login from './components/Login';
@@ -33,7 +32,6 @@ class App extends Component {
         <Navbar/>
           <Switch>
             <Route exact path="/" component={CarouselContainer} />
-            <Route exact path="/about" component={About} />
             <Route exact path="/mypage" component={MyPage} />
             <Route exact path="/mypage/modifyinfo" component={ModifyMyInfo} />
             <Route exact path="/mypage/modifypw" component={ModifyPw} />

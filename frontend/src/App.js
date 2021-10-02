@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 
 import {BrowserRouter, Route, Switch} from "react-router-dom";
-import CarouselContainer from './components/Home';
+import Home from './components/Home';
 import Navbar from './components/Navbar/Navbar';
 
 import Login from './components/Login';
@@ -31,7 +31,7 @@ class App extends Component {
         <div className="App">
         <Navbar/>
           <Switch>
-            <Route exact path="/" component={CarouselContainer} />
+            <Route exact path="/" component={Home} />
             <Route exact path="/mypage" component={MyPage} />
             <Route exact path="/mypage/modifyinfo" component={ModifyMyInfo} />
             <Route exact path="/mypage/modifypw" component={ModifyPw} />

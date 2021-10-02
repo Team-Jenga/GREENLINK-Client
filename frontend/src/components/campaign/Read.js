@@ -10,6 +10,7 @@ class Read extends Component {
         this.state ={
             id:'',
             event:[],
+            favoriteFlag:0,
         };
     };
     
@@ -18,8 +19,30 @@ class Read extends Component {
             const {id} = this.props.match.params;
             console.log(id)
             const response = await axios.get(`http://ec2-52-78-154-227.ap-northeast-2.compute.amazonaws.com/api/event/${id}`);
+            const favoriteRes = await axios.get(`http://ec2-52-78-154-227.ap-northeast-2.compute.amazonaws.com/api/favorite`, {
+                params: {
+                    member: localStorage.getItem('id'),
+                }
+            });
+            const arr = favoriteRes.event_list
+
+            for(let i = 0; i < arr.length; i++) {
+                if (arr[i]["event_id"] === id) {
+                    this.setState({
+                        favoriteFlag:1
+                    })
+                    break
+                }
+                else {
+                    this.setState({
+                        favoriteFlag:0
+                    })
+                }
+            }
+            
+            console.log(this.state.favoriteFlag)
             this.setState({
-                event:response.data,
+                event:response.data
             });
             console.log(response);
         } catch(e) {
@@ -40,12 +63,11 @@ class Read extends Component {
         })      
     }  
 
-    
     addFavorite = () => {
         console.log(this.state.event.member)
         console.log(this.state.event.event_id)
-        axios.post(`http://ec2-52-78-154-227.ap-northeast-2.compute.amazonaws.com/api/favorite`, {
-            member: this.state.event.member,
+        axios.post(`http://ec2-52-78-154-227.ap-northeast-2.compute.amazonaws.com/api/favorites`, {
+            member: localStorage.getItem('id'),
             event : this.state.event.event_id
         }).then(function (response) {
             console.log(response);
@@ -54,11 +76,31 @@ class Read extends Component {
         }).then(alert('즐겨찾기 추가 성공'));
     }
 
+    deleteFavorite = () => {
+        console.log(this.state.event.member)
+        console.log(this.state.event.event_id)
+        axios.delete(`http://ec2-52-78-154-227.ap-northeast-2.compute.amazonaws.com/api/favorites`, {
+            member: localStorage.getItem('id'),
+            event : this.state.event.event_id
+        }).then(function (response) {
+            console.log(response);
+        }).catch(function (error) {
+            console.log(error);
+        }).then(alert('즐겨찾기 제거 성공'));
+    }
+
     render() {
         const {event} = this.state;
         localStorage.setItem("event_content", event.event_content)
         let content = localStorage.getItem("event_content")
         localStorage.removeItem("event_content")
+
+        let favoriteButton = null;
+        if(this.state.favoriteFlag === 0) {
+            favoriteButton = <Link to={`/campaign`} onClick={this.addFavorite}>즐겨찾기 추가</Link>
+        } else {
+            favoriteButton = <Link to={`/campaign`} onClick={this.deleteFavorite}>즐겨찾기 제거</Link>
+        }
 
         if (localStorage.getItem("auth") === "admin" && localStorage.getItem("id") === event.member) {
             return (
@@ -80,7 +122,7 @@ class Read extends Component {
                             <Link to="/campaign">목록</Link>
                             <Link to="/campaign" onClick={(e) => {this.deleteRow(event.event_id); alert("삭제되었습니다.");} }>삭제</Link>
                             <Link to={`/campaign/modify/${event.event_id}`}>수정</Link>
-                            <Link to={`/campaign`} onClick={this.addFavorite}>즐겨찾기</Link>
+                            {favoriteButton}
                         </Button>
                     </Wrap>
 
@@ -104,6 +146,7 @@ class Read extends Component {
                         </p>
                         <img className="CampaignImg" alt="NoImage" src={event.event_image_url}  width="1000px" height="500px"/>
                         <Button>
+                            {favoriteButton}
                             <Link to="/campaign">목록</Link>
                         </Button>
                     </Wrap>

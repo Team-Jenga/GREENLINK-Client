@@ -97,27 +97,28 @@ class MyPage extends Component {
                 </div>
                 <div className="Wrap">
                 {events.map((item)=> {
-                            return (
-                                <div className= "ListItem">
-                                    <div className= "campaign-item" key = {item.event_id}>
-                                        <Link to={`/campaign/read/${item.event_id}`}>
-                                            <div class='campaign-info'>
-                                                <div style = {{ 
-                                                    backgroundImage: `url(${item.event_image_url})`,
-                                                    width:'100%',
-                                                    height:'260px',
-                                                    backgroundSize: 'cover', 
-                                                    backgroundPosition: 'center',
-                                                    backgroundRepeat: 'no-repeat',
-                                                }}></div>
-                                                <h4 className= "campaign-title">{item.event_title}</h4>
-                                                <p className= "campaign-date">{item.event_location}</p>
-                                                <p className= "campaign-date">{item.event_reporting_date}</p>
-                                            </div>
-                                        </Link>
-                                    </div>
+                const image_url = item.event_image_url.replace("(", "%28").replace(")","%29");
+                        return (
+                            <div className= "ListItem">
+                                <div className= "campaign-item" key = {item.event_id}>
+                                    <Link to={`/campaign/read/${item.event_id}`}>
+                                        <div class='campaign-info'>
+                                            <div style = {{ 
+                                                backgroundImage: "url("+image_url+")",
+                                                width:'100%',
+                                                height:'260px',
+                                                backgroundSize: 'cover', 
+                                                backgroundPosition: 'center',
+                                                backgroundRepeat: 'no-repeat',
+                                            }}></div>
+                                            <h4 className= "campaign-title">{item.event_title}</h4>
+                                            <p className= "campaign-date">{item.event_location}</p>
+                                            <p className= "campaign-date">{item.event_reporting_date}</p>
+                                        </div>
+                                    </Link>
                                 </div>
-                            )
+                            </div>
+                        )
                         })}
                     </div>
             </div>

@@ -28,6 +28,8 @@ class App extends Component {
             <Route exact path="/" component={CarouselContainer} />
             <Route exact path="/about" component={About} />
             <Route exact path="/mypage" component={MyPage} />
+            <Route exact path="/mypage/modifyinfo" component={ModifyMyInfo} />
+            <Route exact path="/mypage/modifypw" component={ModifyPw} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/register" component={Register} />
               

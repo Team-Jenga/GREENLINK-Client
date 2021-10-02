@@ -4,7 +4,7 @@
     justify-content: center;
     align-items: center;
     font-size: 1rem;
-    border: 1px solid rgb(225, 225, 225);
+    border-bottom: 1px solid rgb(225, 225, 225);
 }
 
 .NavbarLogo {
@@ -98,7 +98,7 @@
     .NavbarLogo {
         position: absolute;
         top: 20px;
-        left: 0;
+        left: 0px;
     }
 
     .menu-icon {

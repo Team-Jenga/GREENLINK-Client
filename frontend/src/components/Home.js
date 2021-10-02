@@ -102,9 +102,8 @@ class Home extends Component {
         </div>
 
         <div className="home-area">
-
           <div className="ranking"> 
-            <h3>실시간 <span className = "topten">TOP 10</span> 🔥</h3>
+            <h2>실시간 <span className = "topten">TOP 10</span> 🔥</h2>
             <ul>
               {campaignRank}
             </ul>

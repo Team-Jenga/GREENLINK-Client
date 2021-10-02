@@ -98,10 +98,11 @@ export const getCampaignList = (order) => {
     })
 }
 
-// 공지사항 조회 - Home.js
-export const getNoticeList = () => {
+// 캠페인 즐겨찾기 가져오기 - MyPage.js
+export const getFavorite = (id) => {
     return instance({
-        url: "api/notice",
-        method: "get"
+        url: `api/favorites`,
+        method: "get",
+        params: id
     })
 }

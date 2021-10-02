@@ -1,41 +1,94 @@
 .mypage-content {
-    width: 100%;
-    min-width: 1200px;
-    margin-top: 30px;
-    margin-bottom: 200px;
+  width: 100%;
+  min-width: 1200px;
+  margin-top: 30px;
+  margin-bottom: 200px;
 }
 
 .mypage-area {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    max-width: 1200px;
-    margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 1200px;
+  margin: auto;
 }
 
 .mypage-area.top {
-    width: 1000px;
-    border-bottom: 1px solid rgb(185, 185, 185);
-    padding-bottom: 20px;
+  width: 1000px;
+  border-bottom: 1px solid rgb(185, 185, 185);
+  padding-bottom: 20px;
 }
 
 .mypage-area .user-info {
-    margin-top: 40px;
+  margin-top: 40px;
 }
 
 .mypage-area .user-info div {
-    margin: 10px;
+  margin: 10px;
 }
 
 .mypage-area .bookmark-campaign {
-    margin-top: 40px;
+  margin-top: 40px;
 }
 
 #pw-modify {
-    margin: 10px;
+  margin: 10px;
 }
 
 #info-modify {
-    margin: 10px;
+  margin: 10px;
+}
+
+.Wrap {
+  padding: 20px;
+  margin: 10px 230px 10px 230px;
+}
+
+.Wrap h2 {
+  display: inline-block;
+}
+
+.ListItem {
+  width: 23%;
+  margin-top: 10px;
+  padding: 20px;
+  float: left;
+  border-top: 1px solid #eee;
+}
+
+.ListItem a {
+  text-decoration: none;
+}
+
+.ListItem h4 {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  color: #212121;
+}
+.ListItem p {
+  margin: 0;
+  padding: 10px 0 0 0;
+  color: #787878;
+}
+
+.ListItem h3:hover {
+  color: #0066ff;
+}
+
+.ListItem .campaign-item {
+  width: 100%;
+}
+
+.ListItem .campaign-info {
+  padding: 10px;
+}
+
+.ListItem .campaign-title {
+  font-family: "Noto Sans KR", sans-serif;
+}
+
+.ListItem .campaign-date {
+  font-size: 12px;
 }

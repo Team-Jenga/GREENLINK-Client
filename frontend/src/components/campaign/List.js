@@ -46,10 +46,10 @@ class List extends Component {
                                     <div class='campaign-info'>
                                         <div style = {{ 
                                             backgroundImage: "url("+image_url+")",
-                                            width:'100%',
-                                            height:'260px',
+                                            height:'170px',
+                                            width:'15%',
                                             backgroundSize: 'cover', 
-                                            backgroundPosition: 'center',
+                                            backgroundPosition: 'center', 
                                             backgroundRepeat: 'no-repeat',
                                         }}></div>
                                         <h4 className= "campaign-title">{item.event_title}</h4>
@@ -76,12 +76,13 @@ class List extends Component {
                                             <div class='campaign-info'>
                                                 <div style = {{ 
                                                     backgroundImage: "url("+image_url+")",
-                                                    width:'100%',
-                                                    height:'260px',
+                                                    height:'170px',
+                                                    width:'15%',
                                                     backgroundSize: 'cover', 
                                                     backgroundPosition: 'center', 
                                                     backgroundRepeat: 'no-repeat',
-                                                }}></div>
+                                                }}>
+                                                </div>
                                                 <h4 className= "campaign-title">{item.event_title}</h4>
                                                 <p className= "campaign-date">{item.event_location}</p>
                                                 <p className= "campaign-date">{item.event_reporting_date}</p>
@@ -107,10 +108,9 @@ const Wrap = styled.div`
 `;
 
 const ListItem = styled.div`
-    width:23%;
-    margin-top:10px;
+    width:100%;
+    margin-top:50px;
     padding:20px;
-    float: left;
     border-top: 1px solid #eee;
     a{
         text-decoration:none;
@@ -137,7 +137,9 @@ const ListItem = styled.div`
     }
     
     .campaign-info {
-    padding: 10px;
+        padding: 10px;
+        width:100%;
+        background:rgb(247, 255, 245);
     }
     
     .campaign-title {
@@ -151,9 +153,9 @@ const ListItem = styled.div`
 `;
 
 const Button = styled.div`
-    border-top: 1px solid #eee;
     a{
         float: right;
+        margin-right: 20px;
         padding: 10px 20px;
         border-radius: 5px;
         text-decoration:none;

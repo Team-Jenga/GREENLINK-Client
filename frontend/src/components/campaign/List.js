@@ -51,6 +51,7 @@ class List extends Component {
                                             backgroundSize: 'cover', 
                                             backgroundPosition: 'center', 
                                             backgroundRepeat: 'no-repeat',
+                                            float:'left',
                                         }}></div>
                                         <h4 className= "campaign-title">{item.event_title}</h4>
                                         <p className= "campaign-date">{item.event_location}</p>
@@ -81,6 +82,7 @@ class List extends Component {
                                                     backgroundSize: 'cover', 
                                                     backgroundPosition: 'center', 
                                                     backgroundRepeat: 'no-repeat',
+                                                    float:'left',
                                                 }}>
                                                 </div>
                                                 <h4 className= "campaign-title">{item.event_title}</h4>
@@ -139,6 +141,7 @@ const ListItem = styled.div`
     .campaign-info {
         padding: 10px;
         width:100%;
+        height:180px;
         background:rgb(247, 255, 245);
     }
     
@@ -154,14 +157,58 @@ const ListItem = styled.div`
 
 const Button = styled.div`
     a{
-        float: right;
-        margin-right: 20px;
-        padding: 10px 20px;
-        border-radius: 5px;
         text-decoration:none;
-        background:#212121;
-        color:#fff;
+        color: white;
     }
+    float: right;
+    appearance: none;
+    background-color: #2ea44f;
+    border: 1px solid rgba(27, 31, 35, .15);
+    border-radius: 6px;
+    box-shadow: rgba(27, 31, 35, .1) 0 1px 0;
+    box-sizing: border-box;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    font-family: -apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 20px;
+    padding: 6px 16px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: middle;
+    white-space: nowrap;
+  
+   &:focus:not(:focus-visible):not(.focus-visible) {
+    box-shadow: none;
+    outline: none;
+  }
+  
+  &:hover {
+    background-color: #2c974b;
+  }
+  
+  &:focus {
+    box-shadow: rgba(46, 164, 79, .4) 0 0 0 3px;
+    outline: none;
+  }
+  
+  &:disabled {
+    background-color: #94d3a2;
+    border-color: rgba(27, 31, 35, .1);
+    color: rgba(255, 255, 255, .8);
+    cursor: default;
+  }
+  
+  &:active {
+    background-color: #298e46;
+    box-shadow: rgba(20, 70, 32, .2) 0 1px 0 inset;
+  }
 }`;
 
 export default List;

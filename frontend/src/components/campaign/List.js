@@ -108,36 +108,37 @@ class List extends Component {
             return (
                 <div>
                     <Wrap> 
-                        <h2><b>캠페인</b></h2>
+                    <h3><b>어떤 캠페인을 찾으시나요?{'\u00A0'}{'\u00A0'}{'\u00A0'}</b></h3>
+                        <input type ="text" name="searchCampaign" onChange={this.searchCampaign} />
+                        <button type ="button" name="searchButton" value="검색" onClick={() => {this.onClickSubmit()}}><img src='../../images/search.png' width='25px' height='25px' alt=""/></button>
                         {events.map((item)=> {
                             const image_url = item.event_image_url.replace("(", "%28").replace(")","%29");
                             return (
-                                    <ListItem className= "campaign-item" key = {item.event_id}>
-                                        <Link to={`/campaign/read/${item.event_id}`}>
-                                        <div class='campaign-info'>
-                                            <div style = {{ 
-                                                backgroundImage: "url("+image_url+")",
-                                                height:'170px',
-                                                width:'15%',
-                                                backgroundSize: 'cover', 
-                                                backgroundPosition: 'center', 
-                                                backgroundRepeat: 'no-repeat',
-                                                float:'left',
-                                            }}></div>
-                                            <div className='mid'>
-                                                <div className='mid'>
-                                                <h4 className= "campaign-title">{item.event_title}</h4>
-                                                <p className= "campaign-date">내용 {item.event_content}</p>
-                                                <p className= "campaign-date">주관 {item.event_management}</p>
-                                            </div>
-                                            <div className='right'>
-                                                <p className= "campaign-date">D-day :{}</p>
-                                                <p className= "campaign-date">views :{item.event_views}</p>
-                                            </div>
-                                            </div>
+                                <ListItem className= "campaign-item" key = {item.event_id}>
+                                <Link to={`/campaign/read/${item.event_id}`}>
+                                    <div class='campaign-info'>
+                                        <div style = {{ 
+                                            backgroundImage: "url("+image_url+")",
+                                            height:'170px',
+                                            width:'15%',
+                                            backgroundSize: 'cover', 
+                                            backgroundPosition: 'center', 
+                                            backgroundRepeat: 'no-repeat',
+                                            float:'left',
+                                            marginRight:'15px'
+                                        }}></div>
+                                        <div className='mid'>
+                                            <h4 className= "campaign-title">{item.event_title}</h4>
+                                            <p className= "campaign-date">내용 {item.event_content}</p>
+                                            <p className= "campaign-date">주관 {item.event_management}</p>
                                         </div>
-                                        </Link>
-                                    </ListItem>
+                                        <div className='right'>
+                                            <p className= "campaign-date" >D-day - {ddayList[i++]}</p>
+                                            <p className= "campaign-date">views :{item.event_views}</p>
+                                        </div>
+                                    </div>
+                                </Link>
+                            </ListItem>
                             )
                         })}
                     </Wrap>
@@ -215,7 +216,7 @@ const ListItem = styled.div`
     }
     
     .campaign-date {
-        font-size: 12px;
+        font-size: 18px;
         overflow: hidden;
         text-overflow: ellipsis;
         width: 300px; 

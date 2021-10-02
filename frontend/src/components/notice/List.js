@@ -57,6 +57,7 @@ class List extends Component {
                 <div>
                     <Wrap> 
                         <h2><b>공지사항</b></h2>
+                        <br/><br/>
                         {boards.map((item)=> {
                             return (
                                 <ListItem key = {item.id}>

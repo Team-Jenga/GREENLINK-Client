@@ -1,5 +1,6 @@
 .home-content {
-    width: 100%;
+    align-items: center;
+    justify-content: center;
     min-width: 1200px;
     margin-top: 40px;
     margin-bottom: 200px;
@@ -7,33 +8,89 @@
 
 .home-area {
     display: flex;
-    flex-direction: column;
     justify-content: center;
-    align-items: center;
-    max-width: 1200px;
-    margin: auto;
-}
-
-.home-area .ranking {
     margin-top: 100px;
 }
 
+.home-area .ranking {
+    width: 500px;
+    margin-left: 100px;
+}
+
+.home-area h3 {
+    font-size: 25px;
+    font-weight: bold;
+}
+
 .ranking .rank {
-    margin-right: 30px;
+    margin: 10px;
+    color: rgb(68,145,44);
+    font-weight: bolder;
+    font-size: 15px;
 }
 
 .ranking ul {
-    width: 100%;
-    margin-top: 50px;
+    margin-top: 20px;
+    padding-left: 0;
 }
 
 .ranking li {
     display: flex;
+    height: 50px;
+    align-items: center;
     list-style: none;
-    margin-top: 15px;
+    font-size: small;
+}
+
+.ranking li:hover {
+    border-radius: 3px;
+    background: rgb(240, 240, 240);
+    transition: all 0.2s ease-out;
 }
 
 .ranking a {
     color: black;
     text-decoration: none;
+}
+
+.ranking a:hover {
+    color: black;
+}
+
+.topten{
+    color: rgb(68,145,44);
+    font-weight:bold;
+}
+
+.home-area .notice {
+    width: 500px;
+    padding-left: 100px;
+}
+
+.notice ul {
+    margin-top: 20px;
+    padding-left: 0;
+}
+
+.notice li {
+    display: flex;
+    height: 50px;
+    align-items: center;
+    list-style: none;
+    font-size: small;
+}
+
+.notice li:hover {
+    border-radius: 3px;
+    background: rgb(240, 240, 240);
+    transition: all 0.2s ease-out;
+}
+
+.notice a {
+    color: black;
+    text-decoration: none;
+}
+
+.notice a:hover {
+    color: black;
 }

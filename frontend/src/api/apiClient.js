@@ -97,3 +97,11 @@ export const getCampaignList = (order) => {
         params: order
     })
 }
+
+// 공지사항 조회 - Home.js
+export const getNoticeList = () => {
+    return instance({
+        url: "api/notice",
+        method: "get"
+    })
+}

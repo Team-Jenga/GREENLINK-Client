@@ -114,20 +114,27 @@ class Read extends Component {
 
         if (localStorage.getItem("auth") === "admin" && localStorage.getItem("id") === event.member) {
             return (
-                <div>
+                <div display="flex">
                     <Wrap>
                         <h2>{event.event_title}</h2>
-                        <h5 align="right">{event.event_period_start} </h5>
-                        <h5 align="right">{event.event_period_end} </h5>
-                        <h6 align="right"> 작성자 : {event.member} </h6>
-                        <p>
-                            {
-                                content.split("\n").map(line => {
-                                    return (<span>{line}<br/></span>)
-                                })
-                            }
-                        </p>
-                        <img className="CampaignImg" alt="NoImage" src={event.event_image_url} width="1000px" height="500px"/>
+                        <img className="CampaignImg" alt="NoImage" src={event.event_image_url} width="400px" height="400px" />
+                        <div className="contentDiv">
+                            <div className="CampaignText">
+                                <h5 align="right"> 시작일 : {event.event_period_start} </h5>
+                                <h5 align="right"> 마감일 : {event.event_period_end} </h5>
+                                <h6 align="right"> 작성자 : {event.member} </h6>
+                            </div>
+                            <p><b>주관 : </b>{event.event_management}</p>
+                            <p><b>주최 장소 : </b>{event.event_location}</p>
+                            <p><b>url : </b>{event.event_url}</p>
+                            <p><b> 내용 : </b><br/>
+                                {
+                                    content.split("\n").map(line => {
+                                        return (<span>{line}<br/></span>)
+                                    })
+                                }
+                            </p>
+                        </div>
                         <Button>
                             <Link to="/campaign">목록</Link>
                             <Link to="/campaign" onClick={(e) => {this.deleteRow(event.event_id); alert("삭제되었습니다.");} }>삭제</Link>
@@ -154,7 +161,7 @@ class Read extends Component {
                                 })
                             }
                         </p>
-                        <img className="CampaignImg" alt="NoImage" src={event.event_image_url}  width="1000px" height="500px"/>
+                        <img className="CampaignImg" alt="NoImage" src={event.event_image_url}  width="400px" height="400px"/>
                         <Button>
                             {favoriteButton}
                             <Link to="/campaign">목록</Link>
@@ -175,8 +182,17 @@ const Wrap = styled.div`
         padding-bottom:20px;
         border-bottom:1px solid #ccc;
     }
-    p {
-        min-height: 200px;
+
+    .CampaignImg {
+        float:left;
+        margin-right:20px;
+        margin-top: 20px;
+    }
+
+    .contentDiv {
+        overflow-x:hidden;
+        overflow-y:hidden;
+        margin-top: 20px;
     }
 `;
 

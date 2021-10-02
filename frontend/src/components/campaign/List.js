@@ -5,6 +5,7 @@ import axios from 'axios';
 import styled from 'styled-components';
 
 class List extends Component { 
+    
     state = { 
         events: [], 
         searchWord:'',
@@ -46,6 +47,17 @@ class List extends Component {
 
     render() { 
         const { events } = this.state; 
+        var ddayList = [] 
+        var i = 0
+        const arr = this.state.events
+        for(let i = 0; i < arr.length; i++) {
+            const today = new Date();
+            const dLL = arr[i]["event_period_end"].split('-');
+            const dday = new Date(dLL[0], dLL[1]-1, dLL[2]);
+            const gap =  (today.getTime() - dday.getTime())*(-1);
+            ddayList.push(Math.ceil(gap/(1000*60*60*24)));
+        }
+        
         if (localStorage.getItem("auth") === "admin") {
             return (
                     <Wrap>
@@ -73,10 +85,17 @@ class List extends Component {
                                             backgroundPosition: 'center', 
                                             backgroundRepeat: 'no-repeat',
                                             float:'left',
+                                            marginRight:'15px'
                                         }}></div>
-                                        <h4 className= "campaign-title">{item.event_title}</h4>
-                                        <p className= "campaign-date">{item.event_location}</p>
-                                        <p className= "campaign-date">{item.event_reporting_date}</p>
+                                        <div className='mid'>
+                                            <h4 className= "campaign-title">{item.event_title}</h4>
+                                            <p className= "campaign-date">내용 {item.event_content}</p>
+                                            <p className= "campaign-date">주관 {item.event_management}</p>
+                                        </div>
+                                        <div className='right'>
+                                            <p className= "campaign-date">D-day :{ddayList[i++]}</p>
+                                            <p className= "campaign-date">views :{item.event_views}</p>
+                                        </div>
                                     </div>
                                 </Link>
                             </ListItem>
@@ -95,21 +114,28 @@ class List extends Component {
                             return (
                                     <ListItem className= "campaign-item" key = {item.event_id}>
                                         <Link to={`/campaign/read/${item.event_id}`}>
-                                            <div class='campaign-info'>
-                                                <div style = {{ 
-                                                    backgroundImage: "url("+image_url+")",
-                                                    height:'170px',
-                                                    width:'15%',
-                                                    backgroundSize: 'cover', 
-                                                    backgroundPosition: 'center', 
-                                                    backgroundRepeat: 'no-repeat',
-                                                    float:'left',
-                                                }}>
-                                                </div>
+                                        <div class='campaign-info'>
+                                            <div style = {{ 
+                                                backgroundImage: "url("+image_url+")",
+                                                height:'170px',
+                                                width:'15%',
+                                                backgroundSize: 'cover', 
+                                                backgroundPosition: 'center', 
+                                                backgroundRepeat: 'no-repeat',
+                                                float:'left',
+                                            }}></div>
+                                            <div className='mid'>
+                                                <div className='mid'>
                                                 <h4 className= "campaign-title">{item.event_title}</h4>
-                                                <p className= "campaign-date">{item.event_location}</p>
-                                                <p className= "campaign-date">{item.event_reporting_date}</p>
+                                                <p className= "campaign-date">내용 {item.event_content}</p>
+                                                <p className= "campaign-date">주관 {item.event_management}</p>
                                             </div>
+                                            <div className='right'>
+                                                <p className= "campaign-date">D-day :{}</p>
+                                                <p className= "campaign-date">views :{item.event_views}</p>
+                                            </div>
+                                            </div>
+                                        </div>
                                         </Link>
                                     </ListItem>
                             )
@@ -127,6 +153,21 @@ const Wrap = styled.div`
     h3 {
         display:inline-block;
         float:left
+    }
+    
+    .campaign-info {
+        display:flex;
+    }
+
+    .mid {
+        flex:4;
+        margin-top:30px;
+    }
+
+    .right {
+        flex:1;
+        margin-top:100px;
+        text-align:right;
     }
 `;
 
@@ -167,11 +208,18 @@ const ListItem = styled.div`
     }
     
     .campaign-title {
-    font-family: "Noto Sans KR", sans-serif;
+        overflow: hidden;
+        text-overflow: clip;
+        width:400px
+        font-family: "Noto Sans KR", sans-serif;
     }
     
     .campaign-date {
-    font-size: 12px;
+        font-size: 12px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: 300px; 
+        white-space:nowrap;
     }
 }
 `;
